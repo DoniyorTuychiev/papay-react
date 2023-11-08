@@ -1,7 +1,7 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { createRoot } from 'react-dom/client';//React dom packege Vertual dom uchun ishlaydi
+import { Provider } from 'react-redux';      //real dom bu brauzerda html, head, boddy joylashadi
+import { store } from './app/store';         //Vertual dom birinchi quriladi va osha asosida real dom uzgartiriladi
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
