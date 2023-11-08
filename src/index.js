@@ -1,0 +1,1 @@
+// indexedDB.js ni ozim yaratdim aksholda err beryapti indexedDB.js yoq deb
