@@ -1,6 +1,7 @@
 import {Box, Button, Container, Stack, Typography } from '@mui/material'
 import React from 'react';
 import './css/App.css';
+import { RippleBadge } from './MaterialTheme/styled';
 
 function App() {
   return (
@@ -11,10 +12,16 @@ function App() {
           Create React App on TypeScript with REDUX
         </Typography>
         </Box>
-        <Button variant="contained">Contained</Button>
+        <Box>
+          <RippleBadge badgeContent = {4}> 
+            <Button color = "secondary" variant="contained">Contained</Button>
+          </RippleBadge>
+        </Box>
       </Stack>
     </Container>
   );
 }
-
+/* <RippleBadge badgeContent = {4}></RippleBadge> Bu bizga tolqilanib turuvchi tugmachani hosil qilib beradi.
+ <Button color = "secondary" yoki Bydefault holatda index.ts dagi primry ga kiritilgan rangda boladi biz
+  uni secondary orqali ozgartirishimiz mumkin */
 export default App;
