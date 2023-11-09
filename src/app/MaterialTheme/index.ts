@@ -47,13 +47,13 @@ const light = {
 };
 
 // A custom theme for this app
-let theme = createTheme(light);
-theme = createTheme(theme, {
+let theme = createTheme(light); //Bu qism displayni hamma devicelar displayiga moslashishi uchun 
+theme = createTheme(theme, {    // maxWidth: 1320px gacha deb qabul qilib oldik
   components: {
     MuiContainer: {
       styleOverrides: {
         maxWidthLg: {
-          [theme.breakpoints.up("lg")]: {
+          [theme.breakpoints.up("lg")]: { //container hech qandey format qoymasek byDefauld  lg (yani large )ni oladi
             maxWidth: "1320px",
           },
         },
