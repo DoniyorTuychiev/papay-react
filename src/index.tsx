@@ -27,4 +27,8 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+//screen lrni hosil qilishni 2 xil yoli bor , birinchi yolida screenni ichida MemberPage.tsx qilib ochilishi mumkin va vu faylnomi bilan yozilishi shart 
+// /2- yoli MemberPage nomli foldir ochi unichiga index.tsx ni yozish mumkin va unga tegishli narsalarni ham shu yerga yozsa boladi 
+// Agar 1-usuldan foydalanilsa component elementlarini component folderi ichiga yozish shart va shuning uchun biz ikkinchi usuldan foydalanamiz
+
 reportWebVitals();
