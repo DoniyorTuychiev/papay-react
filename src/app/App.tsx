@@ -1,9 +1,10 @@
 import {Box, Button, Container, Stack, Typography } from '@mui/material'
-import React from 'react';
+import React, { useState } from 'react';
 import './css/App.css';
+import './css/navbar.css';
 import { RippleBadge } from './MaterialTheme/styled';
-import Users from "./components/users"  //Bu ayni vaqtda hech qayerda ishlamayapti
-import Dishes from "./components/dishes" //Bu ayni vaqtda hech qayerda ishlamayapti
+ //Bu ayni vaqtda hech qayerda ishlamayapti
+ //Bu ayni vaqtda hech qayerda ishlamayapti
 import {BrowserRouter as Router,Route,Link,Switch} from "react-router-dom";
 import { RestaurantPage } from './screens/RestaurantPage';
 import { CommunityPage } from './screens/CommunityPage';
@@ -12,11 +13,27 @@ import { OrdersPage } from './screens/OrdersPage';
 import { HelpPage } from './screens/HelpPage';
 import { LoginPage } from './screens/LoginPage';
 import { HomePage } from './screens/HomePage';
+import { NavbarRestaurant } from './components/header/restaurant';
+import { NavbarOthers } from './components/header/others';
+import { NavbarHome } from './components/header';
 
 function App() {
-  return (
-    <Router>
-      <div>
+  const [path, setPath] = useState();
+  const main_path = window.location.pathname; //qaysi headerni qachon ishlatish kerekligini path orqali tashkillab olinadi
+  
+  console.log("main_path=>", main_path); //orders ni ichida turib obnavleniya qilsak  main_path=. LoginPagedeb korsatadi
+  
+    return (
+    <Router >
+        {main_path == "/" ? (
+          <NavbarHome setPath={setPath}/>
+          ) : main_path.includes('/restaurant') ? (
+            <NavbarRestaurant setPath={setPath}/>
+          ) : (
+            <NavbarOthers />
+          )}
+
+      {/* <div>
         <nav>
           <ul>
             <li>
@@ -29,7 +46,7 @@ function App() {
               <Link to="/orders">Orders</Link>
             </li>
             <li>
-              <Link to="/member-page">MemberPage</Link>
+              <Link to="/member-page">MemberPage</Link> 
             </li>
             <li>
               <Link to="/help">Help</Link>
@@ -41,7 +58,7 @@ function App() {
               <Link to="/">HomePage</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         <Switch>
           <Route path="/restaurant">
             <RestaurantPage/>
@@ -65,7 +82,7 @@ function App() {
             <HomePage />
           </Route>
         </Switch>
-      </div>
+      {/* </div> */}
     </Router>
   );
 }
