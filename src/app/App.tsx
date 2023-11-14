@@ -2,6 +2,7 @@ import {Box, Button, Container, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react';
 import './css/App.css';
 import './css/navbar.css';
+import './css/footer.css';
 import { RippleBadge } from './MaterialTheme/styled';
  //Bu ayni vaqtda hech qayerda ishlamayapti
  //Bu ayni vaqtda hech qayerda ishlamayapti
@@ -16,6 +17,7 @@ import { HomePage } from './screens/HomePage';
 import { NavbarRestaurant } from './components/header/restaurant';
 import { NavbarOthers } from './components/header/others';
 import { NavbarHome } from './components/header';
+import { Footer } from './components/footer';
 
 function App() {
   const [path, setPath] = useState();
@@ -33,32 +35,6 @@ function App() {
             <NavbarOthers />
           )}
 
-      {/* <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/restaurant">Restaurant</Link>
-            </li>
-            <li>
-              <Link to="/Community">Community</Link>
-            </li>
-            <li>
-              <Link to="/orders">Orders</Link>
-            </li>
-            <li>
-              <Link to="/member-page">MemberPage</Link> 
-            </li>
-            <li>
-              <Link to="/help">Help</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/">HomePage</Link>
-            </li>
-          </ul>
-        </nav> */}
         <Switch>
           <Route path="/restaurant">
             <RestaurantPage/>
@@ -82,7 +58,7 @@ function App() {
             <HomePage />
           </Route>
         </Switch>
-      {/* </div> */}
+        <Footer/>
     </Router>
   );
 }
