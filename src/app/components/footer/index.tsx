@@ -40,7 +40,7 @@ export function Footer() {
                             </Stack>
                             <Stack className='details' sx={{mt: '9px'}}>
                                 <Box className='detail_first'>E.</Box>
-                                <Box className='detail_second'>Papay@gmail.com</Box>
+                                <Box className='detail_second'>papay@gmail.com</Box>
                             </Stack>
                         </Stack>
                     </Stack>

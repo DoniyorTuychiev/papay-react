@@ -34,7 +34,6 @@ function App() {
           ) : (
             <NavbarOthers />
           )}
-
         <Switch>
           <Route path="/restaurant">
             <RestaurantPage/>
