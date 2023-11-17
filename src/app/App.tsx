@@ -32,8 +32,9 @@ function App() {
           ) : main_path.includes('/restaurant') ? (
             <NavbarRestaurant setPath={setPath}/>
           ) : (
-            <NavbarOthers />
+            <NavbarOthers setPath={setPath}/> //shu yerga setPath={setPath} ni qoymaganim uchun fon rasmlari ozgarmadi
           )}
+
         <Switch>
           <Route path="/restaurant">
             <RestaurantPage/>
@@ -54,7 +55,7 @@ function App() {
             <LoginPage />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage/>
           </Route>
         </Switch>
         <Footer/>

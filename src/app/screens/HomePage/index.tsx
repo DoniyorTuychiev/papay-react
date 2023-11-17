@@ -1,12 +1,14 @@
 import React from 'react';
 import { Container } from "@mui/material";
 import { Statistics } from './statistics';
+// import { TopRestaurants } from './topRestaurants';
 import { TopRestaurants } from './toprestaurants';
+
 import { BestRestaurants } from './bestrestaurants';
 import { BestDishes } from './bestdishes';
 import { Advertisements } from './advertisements';
 import { Events } from './events';
-import { Recommendations } from './recommendarions';
+import { Recommendations } from './recommendations';
 import '../../../app/css/home.css';
 
 

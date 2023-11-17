@@ -19,17 +19,17 @@ export function TopRestaurants(){
         <div className='top_restaurant_frame'>
             <Container>
                 <Stack 
-                flexDirection={'column'} 
-                alignItems={'center'} 
-                sx={{mt: '45px'}}>
+                  flexDirection={'column'} 
+                  alignItems={'center'} 
+                  sx={{mt: '45px'}}>
                     <Box className='category_title'>TOP Restaurants</Box>
                     <Stack sx={{mt:"43px"}} flexDirection={'row'} m={'16px'}>
                         <CssVarsProvider> {/*Bu priovider materila UI ni ichida material/joy ui  ni ishlatish imcon beradi */}   
                              {/**Birinchi Card started */}
-                             <Card 
-                            sx={{ 
+                            <Card 
+                              sx={{ 
                                 minHeight: 430, 
-                                minwidth: 375, 
+                                minwidth: 325, 
                                 mr:'35px', 
                                 cursor: 'pointer'
                                 }}>
@@ -61,11 +61,11 @@ export function TopRestaurants(){
                                 <CardOverflow 
                                 sx={{
                                     display:'flex',
+                                    flexDirection:'row',
                                     gap: 1.5,
                                     py: 1.5,
-                                    px: 'var(--Card-padding',
-                                    borderTop: '1px solid'
-                                }}>
+                                    px: 'var(--Card-padding)',
+                                    borderTop: '1px solid rgb(107, 105, 103)'}}>
                                     <IconButton
                                     aria-label='Like minimal photography'
                                     size='md'
@@ -84,15 +84,15 @@ export function TopRestaurants(){
                                     </IconButton>
 
                                     <Typography 
-                                        // level="body3" bu yerda ishlaadi soreman
+                                        level="body-sm" //bu yerda ishlmadi soreman
                                         sx={{
+                                            display:'flex',
                                             fontWeight: 'md',
                                             color: 'neutral.300',
                                             alignItems:'center',
-                                            display:'flex',
                                         }}
                                     >
-                                       100{" "}
+                                       100 
                                        <VisibilityIcon sx={{fontSize: 20, marginLeft: '5px'}}/>
                                     </Typography>
                                     <Box sx={{width: 2, bgcolor:'divider'}} />
@@ -102,8 +102,7 @@ export function TopRestaurants(){
                                             color: 'neutral.300',
                                             alignItems:'center',
                                             display:'flex',
-                                        }}
-                                    >
+                                        }}>
                                        <div>50</div>
                                        <Favorite sx={{fontSize: 20, marginLeft: '5px'}}/>
                                     </Typography>
@@ -114,10 +113,11 @@ export function TopRestaurants(){
                             <Card 
                             sx={{ 
                                 minHeight: 430, 
-                                minwidth: 375, 
+                                minwidth: 325, 
                                 mr:'35px', 
                                 cursor: 'pointer'
                                 }}>
+
                                 <CardCover>
                                     <img
                                     src="/restaurant/burak.webp"
@@ -146,11 +146,11 @@ export function TopRestaurants(){
                                 <CardOverflow 
                                 sx={{
                                     display:'flex',
+                                    flexDirection:'row',
                                     gap: 1.5,
                                     py: 1.5,
-                                    px: 'var(--Card-padding',
-                                    borderTop: '1px solid'
-                                }}>
+                                    px: 'var(--Card-padding)',
+                                    borderTop: '1px solid rgb(107, 105, 103)' }}>
                                     <IconButton
                                     aria-label='Like minimal photography'
                                     size='md'
@@ -169,7 +169,7 @@ export function TopRestaurants(){
                                     </IconButton>
 
                                     <Typography 
-                                        // level="body3"
+                                        level="body-sm"
                                         sx={{
                                             fontWeight: 'md',
                                             color: 'neutral.300',
@@ -177,16 +177,16 @@ export function TopRestaurants(){
                                             display:'flex',
                                         }}
                                     >
-                                       100{" "}
+                                       100
                                        <VisibilityIcon sx={{fontSize: 20, marginLeft: '5px'}}/>
                                     </Typography>
                                     <Box sx={{width: 2, bgcolor:'divider'}} />
                                     <Typography 
                                         sx={{
+                                            display:'flex',
                                             fontWeight: 'md',
                                             color: 'neutral.300',
                                             alignItems:'center',
-                                            display:'flex',
                                         }}
                                     >
                                        <div>50</div>
@@ -199,7 +199,7 @@ export function TopRestaurants(){
                             <Card 
                             sx={{ 
                                 minHeight: 430, 
-                                minwidth: 375, 
+                                minwidth: 325, 
                                 mr:'35px', 
                                 cursor: 'pointer'
                                 }}>
@@ -231,11 +231,11 @@ export function TopRestaurants(){
                                 <CardOverflow 
                                 sx={{
                                     display:'flex',
+                                    flexDirection:'row',
                                     gap: 1.5,
                                     py: 1.5,
-                                    px: 'var(--Card-padding',
-                                    borderTop: '1px solid'
-                                }}>
+                                    px: 'var(--Card-padding)',
+                                    borderTop: '1px solid rgb(107, 105, 103)'}}>
                                     <IconButton
                                     aria-label='Like minimal photography'
                                     size='md'
@@ -254,7 +254,7 @@ export function TopRestaurants(){
                                     </IconButton>
 
                                     <Typography 
-                                        // level="body3"
+                                        level="body-sm"
                                         sx={{
                                             fontWeight: 'md',
                                             color: 'neutral.300',
@@ -262,7 +262,7 @@ export function TopRestaurants(){
                                             display:'flex',
                                         }}
                                     >
-                                       100{" "}
+                                       100
                                        <VisibilityIcon sx={{fontSize: 20, marginLeft: '5px'}}/>
                                     </Typography>
                                     <Box sx={{width: 2, bgcolor:'divider'}} />
@@ -284,7 +284,7 @@ export function TopRestaurants(){
                             <Card 
                             sx={{ 
                                 minHeight: 430, 
-                                minwidth: 375, 
+                                minwidth: 325, 
                                 mr:'35px', 
                                 cursor: 'pointer'
                                 }}>
@@ -313,14 +313,16 @@ export function TopRestaurants(){
                                     </Typography>
                                 </CardContent>
                                     {/*material ui dagi CardOverflow rasm ostida likes comments uchunjoy ajratadi */}
-                                <CardOverflow 
+                                <CardOverflow
                                 sx={{
                                     display:'flex',
+                                    flexDirection:'row',
                                     gap: 1.5,
                                     py: 1.5,
-                                    px: 'var(--Card-padding',
-                                    borderTop: '1px solid'
-                                }}>
+                                    px: 'var(--Card-padding)',
+                                    borderTop: '1px solid rgb(107, 105, 103)'
+                                    }}> 
+            
                                     <IconButton
                                     aria-label='Like minimal photography'
                                     size='md'
@@ -339,7 +341,7 @@ export function TopRestaurants(){
                                     </IconButton>
 
                                     <Typography 
-                                        // level="body3"
+                                        level="body-sm"
                                         sx={{
                                             fontWeight: 'md',
                                             color: 'neutral.300',
@@ -347,10 +349,10 @@ export function TopRestaurants(){
                                             display:'flex',
                                         }}
                                     >
-                                       100{" "}
+                                       100
                                        <VisibilityIcon sx={{fontSize: 20, marginLeft: '5px'}}/>
                                     </Typography>
-                                    <Box sx={{width: 2, bgcolor:'divider'}} />
+                                    <Box sx={{width: 2, bgcolor:'divider' }} />
                                     <Typography 
                                         sx={{
                                             fontWeight: 'md',
