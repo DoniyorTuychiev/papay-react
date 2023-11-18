@@ -9,11 +9,11 @@ import React from 'react';
 
 export function BestRestaurants(){
     return (
-        <div className='top_restaurant_frame'>
+        <div className='best_restaurant_frame'>
             <img src={'/icons/line_group.svg'}
             style={{position:'absolute', left:'6%', transform:'rotate(90deg)'}}
             />
-            <Container sx={{mt:'153px'}}>
+            <Container sx={{paddingTop:'153px'}}>
                 <Stack flexDirection={'column'} alignItems={'center'}>
                     <Box className='category_title'>Zo'r Restaurantlar</Box>
                     <Stack sx={{mt:'43px'}} flexDirection={'row'}>
@@ -355,8 +355,8 @@ export function BestRestaurants(){
                     <Stack 
                     flexDirection={'row'} 
                     justifyContent={'flex-end'} 
-                    style={{width:'100%'}}>
-                        <Button style={{background:'#1976d2', color:'#ffffff', marginTop:'16px'}}>Barchasini Korish</Button>
+                    style={{width:'100%', marginTop:'16px'}}>
+                        <Button style={{background:'#1976d2', color:'#ffffff'}}>Barchasini Korish</Button>
                     </Stack>
                 </Stack>
             </Container>
