@@ -73,4 +73,117 @@
     display: flex;
     background: #0B0E11;
  }
- 
+ /* Best Dishes Page started */
+ .homepage .best_dishes_frame{
+    margin-top: 72px;
+    width: 100%;
+    height: 462px;
+    display: flex;
+ }
+
+.homepage .dish_box{
+    margin-right: 26px;
+    width: 273px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.homepage .dish_box .dish_img{
+    position: relative;
+    width: 273px;
+    height: 275px;
+    background-size: cover;
+    border-radius: 0px 50px 0px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.homepage .dish_img .dish_sale{
+    margin-top: 43px;
+    width: 77px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8be69;
+    border-radius: 0px 50px 50px 0px;
+    box-shadow: 4px 6px 20px 0px rgba(0, 0, 0, 0.10);
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+    color: #ffffff;
+}
+.homepage .view_btn{
+    width: 162.998px;
+    height: 50px;
+    margin-top: 31px;
+    margin-left: 55px;
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 10px;
+    border: 2px solid #B48B50;
+    opacity: 0.3;
+    background: rgba(28, 23, 23, 0.59);
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: #ffffff;
+}
+
+.homepage .dish_img:hover .view_btn{
+    opacity: 1;
+}
+.homepage .dish_box .dish_desc{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage .dish_desc .dish_title_text{
+    margin-top: 18px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+    color: #d1d1d1;
+}
+
+.homepage .dish_desc .dish_desc_text{
+    margin-top: 15px;
+    font-family: 'Poppins';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px;
+    color: #E3C08D;
+}
+/* Advertisment section is started */
+.homepage .ads_restaurant_frame{
+    width: 100%;
+    height: 693px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0px -62px 60px 20px rgb(217 217 217/40%);
+    transform: scale(1.5);
+    margin-top: 287px;
+    background-color: #956dd3;
+}
+.homepage .ads_restaurant_frame .ads_video{
+    width: 100%;
+    background: #0c0e12;
+    box-shadow: 0px -8px 90px rgb(215 215 225);
+    transform: scale(1.5);
+    overflow: hidden;
+}
