@@ -59,7 +59,7 @@ export function Events() {
                         />
                     </Box>
                     <Swiper 
-                      className={'events_info swiper_wrapper'}
+                      className={'events_info swiper-wrapper'}
                       slidesPerView={'auto'}
                       centeredSlides={true}
                       spaceBetween={30}
