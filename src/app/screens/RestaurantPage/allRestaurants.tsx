@@ -63,7 +63,7 @@ export function AllRestaurants(){
                         <img src="/restaurant/burak.webp" alt="" />
                       </AspectRatio>
                       <IconButton
-                        aria-label="Like minimal photography"
+                        aria-label="Like minimal photography" 
                         size="md"
                         variant="solid"
                         color="neutral"

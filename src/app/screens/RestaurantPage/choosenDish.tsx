@@ -2,6 +2,6 @@ import React from 'react';
 
 export function ChoosenDish(){
     return(
-        <div>ChoosenDish</div>
+        <div className='choosen_dish_page'></div>
     );
 }
