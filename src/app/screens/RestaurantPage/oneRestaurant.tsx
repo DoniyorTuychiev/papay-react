@@ -1,5 +1,4 @@
 import React from 'react';
-// import React, { useState, useEffect } from "react";
 import { Box, Button, Container, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -223,7 +222,7 @@ export function OneRestaurant(){
                             <StarIcon style={{ color: "F2BD57" }} />
                             <StarIcon style={{ color: "F2BD57" }} />
                             <StarIcon style={{ color: "F2BD57" }} />
-                            <StarIcon style={{ color: "whitesmoke" }} />
+                            <StarIcon style={{ color: "F2BD57" }} />
                             <StarIcon style={{ color: "whitesmoke" }} />
                           </div>
                         </Box>
