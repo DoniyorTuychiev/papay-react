@@ -64,11 +64,11 @@ export function TargetArticles(props: any) {
                           checkedIcon={<Favorite style={{ color: "red" }} />}
                           checked={true }
                         />
-                        <span style={{ marginRight: "18px" }}>
+                        <span style={{ marginRight: "18px" }}>77
                           {article?.art_likes}
                         </span>
                         <RemoveRedEyeIcon />
-                        <span style={{ marginLeft: "18px" }}>
+                        <span style={{ marginLeft: "18px" }}>48
                           {article?.art_views}
                         </span>
                       </Box>
