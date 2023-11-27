@@ -5,9 +5,9 @@ import Tab from "@mui/material/Tab";
 import Tablist from "@mui/lab/TabList";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import TabList from "@mui/lab/TabList";
-import FinishedOrders from "../../components/orders/finishedOrders";
-import PausedOrders from "../../components/orders/pausedOrders";
-import ProcessOrders from "../../components/orders/processOrders";
+import FinishedOrders from "./finishedOrders";
+import PausedOrders from "./pausedOrders";
+import ProcessOrders from "./processOrders";
 import '../../../app/css/order.css';
 
 
@@ -94,10 +94,11 @@ export function OrdersPage() {
                       justifyContent={"space-between"}
                       marginTop={"35px"}
                     >
-                      <img src="/icons/paypal.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/paypal.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/paypal.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/western_union.svg" style={{width:"38px", height:"25px"}} />
+                      <img src="/icons/visa_cards/paypal.svg" style={{width:"38px", height:"25px"}} />
+                      <img src="/icons/visa_cards/visa_card.svg" style={{width:"38px", height:"25px"}} />
+                      <img src="/icons/visa_cards/western_union.svg" style={{width:"38px", height:"25px"}} />
+                      <img src="/icons/visa_cards/jcb_card.svg" style={{width:"38px", height:"25px"}} />
+                      <img src="/icons/visa_cards/master_card.svg" style={{width:"38px", height:"25px"}} />
                     </Box>
                   </Box>
                 </Box>

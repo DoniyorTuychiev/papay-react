@@ -36,14 +36,14 @@ export default function PausedOrders(props: any) {
 
               <Box className={"total_price_box black_solid"}>
                 <Box className={"boxTotal"}>
-                  <p>mahsulot narxi</p>
+                  <p>maxsulot</p>
                   <p>$16.2</p>
                   <img src="/icons/plus.svg" style={{ marginLeft: "20px" }} />
                   <p>yetkazibberish xizmati</p>
                   <p>$2.5</p>
                   <img src="/icons/pause.svg" style={{ marginLeft: "20px" }} />
                   <p>jami narx</p>
-                  <p>$16.2</p>
+                  <p>$17.7</p>
                 </Box>
                 <Button
                   variant="contained"
