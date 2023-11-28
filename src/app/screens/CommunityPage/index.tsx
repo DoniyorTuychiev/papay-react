@@ -12,7 +12,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const targetBoArticles = [1, 2, 3, 4, 5];
+// const targetBoArticles = [1, 2, 3, 4, 5]; {/*1- birinchi qism*/}
 
 export function CommunityPage(props: any) {
     /**INITIALIZATIONS */
@@ -39,13 +39,15 @@ export function CommunityPage(props: any) {
                       <TabContext value={value}>
                         <Box className={"article_tabs"}>
                             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                                <TabList
-                                  
+                                <TabList  //bu qism tablitsalarni ozgartirishda yordam beradi va tablet boarticles methodini quyidagicha yozilishi mumkin 1- qism 2- qismdagidek
+                                 onChange={handleChange}
+                                 aria-label="lab API tabs example"
+                                 style= {{borderColor: 'blue'}}
                                 >
-                                    <Tab label="Barcha Maqolalar" value={"1"} />
-                                    <Tab label="Mashxurlar" value={"2"} />
-                                    <Tab label="Oshxonaga baho" value={"3"} />
-                                    <Tab label="Hikoyalar" value={"4"} />
+                                    <Tab label="Barcha Maqolalar" value={'1'} />
+                                    <Tab label="Mashxurlar" value={'2'} />
+                                    <Tab label="Oshxonaga baho" value={'3'} />
+                                    <Tab label="Hikoyalar" value={'4'} />
                                 </TabList>
                             </Box>
                         </Box>
@@ -53,19 +55,19 @@ export function CommunityPage(props: any) {
                         <Box className={"article_main"}>
                           <TabPanel value={"1"}> {/**TabPanel value= {'1'} sahifa ochilganda bydefault {1} raqamiga ega Barcha Maqolalar sectioni ochiladi.  */}
                             <TargetArticles
-                              targetBoArticles={targetBoArticles}/>
+                              targetBoArticles={[1,2,3]}/> {/*2- birinchi qism*/}
                           </TabPanel>
                           <TabPanel value={"2"}>
                             <TargetArticles
-                              targetBoArticles={targetBoArticles} />
+                              targetBoArticles={[1,2,3,4,5]} />
                           </TabPanel>
                           <TabPanel value={"3"}>
                             <TargetArticles
-                              targetBoArticles={targetBoArticles} />
+                              targetBoArticles={[1]} />
                           </TabPanel>
                           <TabPanel value={"4"}>
                             <TargetArticles
-                              targetBoArticles={targetBoArticles}/>
+                              targetBoArticles={[1,2]}/>
                           </TabPanel>
                         </Box>
 
