@@ -34,20 +34,19 @@ export function CommunityPage(props: any) {
                     <Stack
                       className={"community_all_frame"}
                       inputMode={"text"}
-                      style={{ border: "1px solid #fff" }}
                     >
                       <TabContext value={value}>
                         <Box className={"article_tabs"}>
                             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                                 <TabList  //bu qism tablitsalarni ozgartirishda yordam beradi va tablet boarticles methodini quyidagicha yozilishi mumkin 1- qism 2- qismdagidek
-                                 onChange={handleChange}
-                                 aria-label="lab API tabs example"
-                                 style= {{borderColor: 'blue'}}
+                                  onChange={handleChange}
+                                  aria-label="lab API tabs example"
+                                  style= {{borderColor: 'blue'}}
                                 >
-                                    <Tab label="Barcha Maqolalar" value={'1'} />
-                                    <Tab label="Mashxurlar" value={'2'} />
-                                    <Tab label="Oshxonaga baho" value={'3'} />
-                                    <Tab label="Hikoyalar" value={'4'} />
+                                  <Tab label="Barcha Maqolalar" value={'1'} />
+                                  <Tab label="Mashxurlar" value={'2'} />
+                                  <Tab label="Oshxonaga baho" value={'3'} />
+                                  <Tab label="Hikoyalar" value={'4'} />
                                 </TabList>
                             </Box>
                         </Box>
@@ -77,7 +76,8 @@ export function CommunityPage(props: any) {
                             page={1}
                             renderItem={(item) => (
                               <PaginationItem
-                                components={{
+                                components=
+                                {{
                                   previous: ArrowBackIcon,
                                   next: ArrowForwardIcon,
                                 }}

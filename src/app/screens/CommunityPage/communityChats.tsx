@@ -37,9 +37,9 @@ import React, {useState,} from "react";
         </Box>
         <Box className={"chat_bott"}>
           <input
+            className={"msg_input"}
             type={"text"}
             name={"message"}
-            className={"msg_input"}
             placeholder={"Xabar jo'natish"}
           />
           <button className={"send_msg_btn"}>

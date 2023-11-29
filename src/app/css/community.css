@@ -201,20 +201,20 @@
   
   .community_page .article_share {
     width: 100%;
-    height: 10%;
+    height: auto;
   
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-bottom: 10px;
   }
   
-  /*.community_page .article_share .article_share_main {*/
-  /*    width: 227px;*/
-  /*    height: 100%;*/
-  
-  /*    display: flex;*/
-  /*    flex-direction: row;*/
-  /*}*/
+  .community_page .article_share .article_share_main {
+    display: flex;
+    align-items: center;
+    margin-left: 150px;
+    color: #fff;
+  } 
   
   .community_page .article_bott {
     width: 100%;

@@ -349,6 +349,7 @@
     height: auto;
     display: flex;
     flex-direction: row;
+    color: rgb(252, 93, 72);
 }
 
 .homepage .article_main {

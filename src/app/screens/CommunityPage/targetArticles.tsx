@@ -45,17 +45,9 @@ export function TargetArticles(props: any) {
                   <Box>
                     <Box
                       className={"article_share"}
-                      style={{ width: "100%", height: "auto" }}
-                      sx={{ mb: "10px" }}
                     >
                       <Box
                         className={"article_share_main"}
-                        style={{
-                          color: "#fff",
-                          marginLeft: "150px",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
                       >
                         <span>{moment().format("YY-MM-DD HH:mm")}</span>
                         <Checkbox
