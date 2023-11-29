@@ -17,7 +17,12 @@
   .my_page .css-1ujnqem-MuiTabs-root {
     width: 100%;
   }
-  
+  .my_page .main_container{
+    max-width: 'lg';
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
   .my_page .my_page_frame {
     width: 100%;
     height: auto;
@@ -31,7 +36,10 @@
     display: flex;
     flex-direction: column;
   }
-  
+  .my_page_left .main_box{
+    display: flex;
+    flex-direction: column;
+  }
   .my_page_left .menu_name {
     width: 100%;
     height: 70px;

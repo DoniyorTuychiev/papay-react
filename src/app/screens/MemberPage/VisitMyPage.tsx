@@ -32,70 +32,72 @@ export function VisitMyPage() {
 
     return (
         <div className={"my_page"}>
-          <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
+          <Container className="main_container">
             <Stack className={"my_page_frame"}>
               <TabContext value={value}>
                 <Stack className={"my_page_left"}>
-                    <Box display={"flex"} flexDirection={"column"}>
-                        <TabPanel value={"1"}>
-                          <Box className={"menu_name"}>Mening Maqolalarim</Box>
-                          <Box className={"menu_content"}>
-                            <MemberPosts/>
-                            <Stack
-                              sx={{ my: "40px" }}
-                              direction="row"
-                              alignItems="center"
-                              justifyContent="center"
-                            >
-                              <Box className={"bottom_box"}>
-                                <Pagination
-                                  count={3}
-                                  page={1}
-                                  renderItem={(item) => (
-                                    <PaginationItem
-                                      components={{
-                                        previous: ArrowBackIcon,
-                                        next: ArrowForwardIcon,
-                                      }}
-                                      {...item}
-                                      color={"secondary"}
-                                    />
-                                  )}
+                  <Box className={'main_box'}>
+                    <TabPanel value={"1"}>
+                      <Box className={"menu_name"}>
+                        Mening Maqolalarim
+                      </Box>
+                      <Box className={"menu_content"}>
+                        <MemberPosts/>
+                        <Stack
+                          sx={{ my: "40px" }}
+                          direction="row"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Box className={"bottom_box"}>
+                            <Pagination
+                              count={3}
+                              page={1}
+                              renderItem={(item) => (
+                                <PaginationItem
+                                  components={{
+                                    previous: ArrowBackIcon,
+                                    next: ArrowForwardIcon,
+                                  }}
+                                  {...item}
+                                  color={"secondary"}
                                 />
-                              </Box>
-                            </Stack>
+                              )}
+                            />
                           </Box>
-                        </TabPanel>
-                                  
-                        <TabPanel value={"2"}>
-                          <Box className={"menu_name"}>Followers</Box>
-                          <Box className={"menu_content"}>
-                            <MemberFollowers actions_enabled={true} />
-                          </Box>
-                        </TabPanel>
-
-                        <TabPanel value={"3"}>
-                          <Box className={"menu_name"}>Following</Box>
-                          <Box className={"menu_content"}>
-                            <MemberFollowing actions_enabled={true} />
-                          </Box>
-                        </TabPanel>
-
-                        <TabPanel value={"4"}>
-                          <Box className={"menu_name"}>Maqola Yozish</Box>
-                          <Box className={"write_content"}></Box>
-                        </TabPanel>
-
-                        <TabPanel value={"5"}>
-                          <Box className={"menu_name"}>Tanlangan Maqola</Box>
-                          <Box className={"menu_content"}></Box>
-                        </TabPanel>
-
-                        <TabPanel value={"6"}>
-                          <Box className={"menu_name"}>Ma'lumotlarni O'zgartirish</Box>
-                          <Box className={"menu_content"}><MySettings /></Box>
-                        </TabPanel>
-                    </Box>
+                        </Stack>
+                      </Box>
+                    </TabPanel>
+                              
+                    <TabPanel value={"2"}>
+                      <Box className={"menu_name"}>
+                        Followers
+                      </Box>
+                      <Box className={"menu_content"}>
+                        <MemberFollowers actions_enabled={true} />
+                      </Box>
+                    </TabPanel>
+                    <TabPanel value={"3"}>
+                      <Box className={"menu_name"}>Following</Box>
+                      <Box className={"menu_content"}>
+                        <MemberFollowing actions_enabled={true} />
+                      </Box>
+                    </TabPanel>
+                    <TabPanel value={"4"}>
+                      <Box className={"menu_name"}>Maqola Yozish</Box>
+                      <Box className={"write_content"}></Box>
+                    </TabPanel>
+                    <TabPanel value={"5"}>
+                      <Box className={"menu_name"}>Tanlangan Maqola</Box>
+                      <Box className={"menu_content"}></Box>
+                    </TabPanel>
+                    <TabPanel value={"6"}>
+                      <Box className={"menu_name"}>Ma'lumotlarni O'zgartirish</Box>
+                      <Box className={"menu_content"}>
+                        <MySettings />
+                        </Box>
+                    </TabPanel>
+                  </Box>
                 </Stack>
     
                 <Stack className={"my_page_right"}>
@@ -167,7 +169,7 @@ export function VisitMyPage() {
                         value={"1"}
                         component={() => (
                           <div className={`menu_box`} onClick={() => setValue("1")}>
-                            <img src={"/icons/writing.svg"} />
+                            <img src={"/icons/writing_pen.svg"} />
                             <span>Maqolalarim</span>
                           </div>
                         )}
@@ -178,7 +180,7 @@ export function VisitMyPage() {
                         component={() => (
                           <div className={`menu_box`} onClick={() => setValue("2")}>
                             <img src={"/icons/followers_group.svg"} />
-                            <span>Follower</span>
+                            <span>Followers</span>
                           </div>
                         )}
                       />
@@ -187,7 +189,7 @@ export function VisitMyPage() {
                         value={"3"}
                         component={() => (
                           <div className={`menu_box`} onClick={() => setValue("3")}>
-                            <img src={"/icons/default_user.svg"} />
+                            <img src={"/icons/default_user_blue.svg"} />
                             <span>Following</span>
                           </div>
                         )}

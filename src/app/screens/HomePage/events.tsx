@@ -2,6 +2,7 @@ import { Box, Container, Stack } from '@mui/material';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Pagination} from 'swiper';
+
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function Events() {

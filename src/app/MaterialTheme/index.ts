@@ -63,4 +63,5 @@ theme = createTheme(theme, {    // maxWidth: 1320px gacha deb qabul qilib oldik
     },
   },
 });
+
 export default theme;

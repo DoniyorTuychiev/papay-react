@@ -32,5 +32,5 @@ export function VisitOtherPage() {
     
     return (
         <div className="my_page"></div>
-    )
+    );
 }
