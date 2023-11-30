@@ -67,7 +67,7 @@ export function OrdersPage() {
                         />
                       </Box>
                     </div>
-                    <h1 className="order_user_name">DoniyorDoni</h1>
+                    <h1 className="order_user_name">Malina Aya</h1>
                     <p className="order_user_prof">Foydalanuvchi</p>
                     <img
                       src="/icons/line_blue.png"

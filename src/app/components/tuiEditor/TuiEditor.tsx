@@ -30,7 +30,7 @@ export const TuiEditor = (props: any) => {
                         Category
                     </Typography>
                     <FormControl sx={{width:'100%', background:'white'}}>
-                        <Select 
+                    <Select                  //onChange hali berilmagani sabab selectni qiymati ozgarmaydi 
                         value={"default"}
                         displayEmpty
                         inputProps={{'aria-label' : 'Without label'}}>
