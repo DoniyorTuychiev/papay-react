@@ -26,7 +26,7 @@ export function MemberFollowing(props: any) {
                 height: "85%",
               }}
             >
-              <span className="username_text">USER</span>
+              <span className="username_text">User</span>
               <span className="name_text">{follower.mb_nick}</span>
             </div>
             {props.actions_enabled &&(

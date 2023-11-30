@@ -74,8 +74,8 @@ export function OrdersPage() {
                       style={{ marginTop: "40px", width: "100%" }}
                     />
                     <Box className={"order_user_address"}>
-                      <img src="/icons/location.png" alt="" />
-                      <p className="spec_address_text">Seoul</p>
+                      <img src="/icons/home_location.png" alt="" />
+                      <p className="spec_address_text">Seoul Deongdemun-gu 38-5 gil</p>
                     </Box>
                   </Box>
                 </Box>
@@ -94,11 +94,11 @@ export function OrdersPage() {
                       justifyContent={"space-between"}
                       marginTop={"35px"}
                     >
-                      <img src="/icons/visa_cards/paypal.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/visa_cards/visa_card.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/visa_cards/western_union.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/visa_cards/jcb_card.svg" style={{width:"38px", height:"25px"}} />
-                      <img src="/icons/visa_cards/master_card.svg" style={{width:"38px", height:"25px"}} />
+                      <img className="paymet_cards" src="/icons/visa_cards/paypal.svg" />
+                      <img className="paymet_cards" src="/icons/visa_cards/visa_card.svg"/>
+                      <img className="paymet_cards" src="/icons/visa_cards/western_union.svg"/>
+                      <img className="paymet_cards" src="/icons/visa_cards/jcb_card.svg" />
+                      <img className="paymet_cards" src="/icons/visa_cards/master_card.svg"/>
                     </Box>
                   </Box>
                 </Box>

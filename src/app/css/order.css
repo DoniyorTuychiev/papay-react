@@ -153,6 +153,11 @@
     letter-spacing: -0.02em;
     color: #434141;
   }
+  .order_page .payment_box .paymet_cards{
+    width: 38px;
+    height: 25px;
+    cursor: pointer;
+  }
   
   .order_page .order_info_box .cards_box {
     margin-top: 35px;

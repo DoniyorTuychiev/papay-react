@@ -570,3 +570,7 @@
     border: 0;
   }
   
+  /********/
+  .form_row{
+    width: 300px;
+  }
