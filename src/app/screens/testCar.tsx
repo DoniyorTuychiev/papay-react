@@ -14,6 +14,28 @@ class Car extends Component {
     changeColor = () => {
       this.setState({color: "blue", model: "Tesla"});
     }
+
+    
+    //?livecycleMahtoDlar backend dan kerakli bolgan datalarni chaqirib beradi
+
+    //? hooklar livecycleMahtods
+    componentDidMount(): void {
+        console.log("run componentDidMount");
+        //run after first render = RETRIEVE DTAFROM BACCEND SERVER
+    };
+/** birinchi page da turib ikkinchi pagega utkanda componentDidMountboladi va ikkinchi pagedan boshqa pagega otkanda esa componentWillUnmount boladi.
+qaytib birinchi page kelinsa endi u componentDidMount bolmaydi=> oldin bolgani sabab.
+Bu uchta livecycleMethodni vazifasini hook yordamida malga oshirish mumkin.
+Aynan React ichida stateni hosil qilibberuvchi narsa bu Hooke. Reactda 3 ta livecycleMethodlarini vazifasini bajara oluvchi hook nomi esa useEffect hookidir(Ex:import React, { useState, useEffect } from "react";
+*/
+    componentWillUnmount(): void {
+        console.log("run componentWillUnmount");
+    };
+
+    componentDidUpdate(): void {
+        console.log("run componentDidUpdate");
+    };
+
     render() {
       return (
         <div>
@@ -37,6 +59,7 @@ class Car extends Component {
   unda state yoq edi. Shuning uchun functionalComconent ichida suniy state yaratilsa ClassComponentsiz qisqa kod yozish mumkin bolardi aynan 
   bu muammoni yechish uchun Hooklar paydo boldi va ravishda React ni 16.8 dan keyin chiqqan versionidan boshlab hooklar orqali functionalComponentda stateni yaratib foydalanish imkoni paydo boldi.
   //? Bundan song ClassComponentga muxtojlik yoqotildi
+  livecycleMethod lar ham Hook lar orqali hosil qilinadi(M: )
   <Functional Component>
   export function HomePage() {
     return <div className='homepage'>
