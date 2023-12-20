@@ -12,16 +12,12 @@ import { NavLink } from "react-router-dom";
 export function NavbarHome(props: any) {
     /**INITIALIZATIONS */
   const [count, setCount] = useState(0);        
-  const [value, setValue] = useState(true);//initial qiymatni true berdim. bunda true bolsa false, false bolsa true boladi
+  const [value, setValue] = useState(true);
 
   //? componentDidUpdate with useEffect and useState
   useEffect(()=>{ 
-    setCount(count + 1);    //todo:shuni sorayman: useState ni ozi ishlatilganda qiymat button orqali emas brauzerdan update bolsa boshlangich qymatga qaytyapti lekin 
-                            //todo:davomi=>        useEffectda useStateni foydalanganda esa do While{}; kabi project ishka tushganda boshlangiz qiymat 0 bolsada useEffect birmarta ishlab 1 ni chiqaryapti.
-  },[value]);
-  //array dependensy qoyilsa useEffect faqat birmarta ishga tushadi.qiymat value bolyapti va harsafar button bosilsa qiymt yangilanadi
-  //useEffect faqat birmarta ishlaydi
-
+    setCount(count + 1);   },[value]);
+  
     /** HANDLERS **/
     
   return (
