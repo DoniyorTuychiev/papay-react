@@ -82,3 +82,6 @@ export default App;
 //Redux ni qollashni 2 xil usuli bor: 
 //1-traditional usul orqali reduxni qurish.yani kop keraksiz bolmagan kodlar orqali ananaviy usulda reduxni ishlatish. 
 //2-usull Zamonaviy Usul yani ReduxToolkit. Bu usul ancha tushunish uchun sodda, kuchli, qisqa kode bilan yuqori natijali usul hisoblanadi. Biz Papay loyihamizda shu usuldan foydalanamiz
+
+
+//serve pakege i va birxil IPadressda bir nechta devicelar projectni run qilishi; TypeScript va Redux architecture haqida Nazariy (REACT) by_90
