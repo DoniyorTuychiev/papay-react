@@ -12,13 +12,12 @@ import { Recommendations } from "./recommendations";
 import "../../../app/css/home.css";
 
 export function HomePage() {
+   //(2-bosqich) selector: store => datani olib beradi
 
     useEffect(() =>{
-        console.log("componetDidMount => Data fetch");//bu componetDidMount methodi ishlashi qismi va bu db dan malumot olib keladi.Ex: homepage da turganda
+      //backenddan data request => data => data kelsa 1-bosqich: redux Store ga datani slice orqali yozadi(yozilish processi=> Slice, va uni ichida reducerlar boladi)
 
-        return () => {//bu componetWillMount methodi ishlashi qismi.Ex: Jamiyatga utkanda lekin Jamiyatda useEffect ishlatilmagan shuning uchun componetWillMount boladi 
-            console.log("componetWillMount process")
-        };  
+      //(1-bosqich) slice: data => store
     }, []);
     
     return (
