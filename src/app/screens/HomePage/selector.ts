@@ -6,7 +6,7 @@ export const retrieveTopRestaurants = createSelector(//createSelector orqali top
   selectHomePage,
   (HomePage) => HomePage.topRestaurants //homePage ichidan topRestaurantsni oldik va uni datasini =>retrieveTopRestaurants ga joyladik
 );
-export const retrievebestRestaurants = createSelector(
+export const retrieveBestRestaurants = createSelector(
   selectHomePage,
   (HomePage) => HomePage.bestRestaurants
 );
