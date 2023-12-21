@@ -16,7 +16,7 @@ export function NavbarHome(props: any) {
 
   //? componentDidUpdate with useEffect and useState
   useEffect(()=>{ 
-    setCount(count + 1);   },[value]);
+    setCount(count + 1); },[value]);
   
     /** HANDLERS **/
     
