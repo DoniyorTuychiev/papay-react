@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../types/user";
-import { serviceApi } from "../../../lib/config";
+import { serverApi } from "../../../lib/config";
 
 /****************************
  *      REDUX Selector      *
@@ -42,10 +42,11 @@ export function TopRestaurants() {
           <Box className="category_title">TOP Restaurants</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
             {topRestaurants.map((ele: Restaurant) => {
-              const image_path = `${serviceApi}/${ele.mb_image}`;
+              const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
-                  <Card className="main_card"
+                  <Card
+                    className="main_card"
                     // sx={{
                     //   minHeight: 430,
                     //   minwidth: 325,
@@ -63,7 +64,12 @@ export function TopRestaurants() {
                       }}
                     />
                     <CardContent sx={{ justifyContent: "flex-end" }}>
-                      <Typography level="h2" textColor="#fff" fontSize="lg" mb={1}>
+                      <Typography
+                        level="h2"
+                        textColor="#fff"
+                        fontSize="lg"
+                        mb={1}
+                      >
                         {ele.mb_nick}
                       </Typography>
                       <Typography
@@ -104,7 +110,7 @@ export function TopRestaurants() {
                             fill:
                               // ele?.me_liked && ele?.me_liked[0].my_favorite //todo: Savol=> my_favorite underfined chiqdi nimaga?
                               //   ? "red"
-                              //   : 
+                              //   :
                               "white",
                           }}
                         />

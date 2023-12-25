@@ -15,10 +15,11 @@ import "../../../app/css/home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setTopRestaurants, setBestRestaurants } from "./slice";
+import { setTopRestaurants, setBestRestaurants, setTrendProducts } from "./slice";
 import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../types/user";
 import RestaurantApiService from "../../apiService/restaurantApiService";
+import { Product } from "../../types/product";
 
 /****************************
  *      REDUX SLICE         *
@@ -26,6 +27,7 @@ import RestaurantApiService from "../../apiService/restaurantApiService";
 const actionDispatch = (dispach: Dispatch) => ({
   setTopRestaurants: (data: Restaurant[]) => dispach(setTopRestaurants(data)),
   setBestRestaurants: (data: Restaurant[]) => dispach(setBestRestaurants(data)),
+  setTrendProducts: (data: Product[]) => dispach(setTrendProducts(data)),
 });
 
 export function HomePage() {
@@ -40,7 +42,6 @@ export function HomePage() {
       .then((data) => { //await emas then ni ishlatishga sabab useEffect doim sycris usulda hosil bolish kerak. 
         //setRestaurant
         setTopRestaurants(data);
-        console.log("setresultat:::", data);
       })
       .catch((err) => console.log(err));
 
