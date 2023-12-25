@@ -67,6 +67,12 @@
 
     color: #E3C08D;
  }
+ .homepage .main_card{
+    min-width: 265px;
+    min-height: 390px;
+    margin: 35px 20px;
+    cursor: pointer;
+ }
  .homepage .best_restaurant_frame{
     width: 100%;
     height: 775px;

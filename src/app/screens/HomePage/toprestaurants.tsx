@@ -28,6 +28,7 @@ const topRestaurantRetriever = createSelector(
 );
 
 export function TopRestaurants() {
+  /** INITIALIZATION   */
   const { topRestaurants } = useSelector(topRestaurantRetriever);
 
   return (
@@ -44,13 +45,13 @@ export function TopRestaurants() {
               const image_path = `${serviceApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
-                  <Card
-                    sx={{
-                      minHeight: 430,
-                      minwidth: 325,
-                      mr: "35px",
-                      cursor: "pointer",
-                    }}
+                  <Card className="main_card"
+                    // sx={{
+                    //   minHeight: 430,
+                    //   minwidth: 325,
+                    //   mr: "35px",
+                    //   cursor: "pointer",
+                    // }}
                   >
                     <CardCover>
                       <img src={image_path} loading="lazy" alt="" />
@@ -62,7 +63,7 @@ export function TopRestaurants() {
                       }}
                     />
                     <CardContent sx={{ justifyContent: "flex-end" }}>
-                      <Typography level="title-lg" textColor="#fff" mb={1}>
+                      <Typography level="h2" textColor="#fff" fontSize="lg" mb={1}>
                         {ele.mb_nick}
                       </Typography>
                       <Typography

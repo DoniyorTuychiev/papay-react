@@ -18,19 +18,19 @@ const HomePageSlice = createSlice({ //Slice bizni barcha action cratersni ozida 
     setTopRestaurants: (state, action) => {
       state.topRestaurants = action.payload;//state.bestRestaurants bolip qogani uchun 2 kun err qidirdim
     },
-    bestRestaurants: (state, action) => {
+    setBestRestaurants: (state, action) => {
       state.bestRestaurants = action.payload;
     },
-    trendProducts: (state, action) => {
+    setTrendProducts: (state, action) => {
       state.trendProducts = action.payload;
     },
-    bestBoArticles: (state, action) => {
+    setBestBoArticles: (state, action) => {
       state.bestBoArticles = action.payload;
     },
-    trendBoArticles: (state, action) => {
+    setTrendBoArticles: (state, action) => {
       state.trendBoArticles = action.payload;
     },
-    newBoArticles: (state, action) => {
+    setNewBoArticles: (state, action) => {
       state.newBoArticles = action.payload;
     },
   },
@@ -39,11 +39,11 @@ const HomePageSlice = createSlice({ //Slice bizni barcha action cratersni ozida 
 //reduce da ishlatish uchun quydagicha:
 export const { 
   setTopRestaurants,
-  bestRestaurants,
-  trendProducts,
-  bestBoArticles,
-  trendBoArticles,
-  newBoArticles,
+  setBestRestaurants,
+  setTrendProducts,
+  setBestBoArticles,
+  setTrendBoArticles,
+  setNewBoArticles,
 } = HomePageSlice.actions;
 
 //reduce ga ulash uchun quydagicha:
