@@ -11,10 +11,10 @@ export interface Product {
   product_status: string;
   product_price: number;
   product_discount: number;
-  product_left_cnt: number;
+  product_left_cnt?: number;
   product_size: number;
   product_volume: Number;
-  product_description: string;
+  product_description?: string;
   product_images: string[];
   product_likes: number;
   product_views: number;

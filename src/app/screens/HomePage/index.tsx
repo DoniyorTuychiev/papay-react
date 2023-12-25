@@ -16,8 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { setTopRestaurants } from "./slice";
-import { retrieveTopRestaurants} from "./selector";
+import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../types/user";
+import RestaurantApiService from "../../apiService/restaurantApiService";
 
 /****************************
  *      REDUX SLICE         *
@@ -31,25 +32,26 @@ const actionDispatch = (dispach: Dispatch) => ({
  ****************************/
 const topRestaurantRetriever = createSelector(
   retrieveTopRestaurants,
-  (topRestaurants) => ({ //?1-bosqich selectorda past bolyapti
+  (topRestaurants) => ({
     topRestaurants,
   })
 );
 
 export function HomePage() {
   /** INITIALIZATION   */
-  const {setTopRestaurants} = actionDispatch(useDispatch());
-
-  //(2-bosqich) selector: store => datani olib beradi
-const {topRestaurants} = useSelector(topRestaurantRetriever);//bu console.log qilishga yordam beradi//?2-bosqich qabul qilindi
-
-console.log("topRestaurants:::", topRestaurants); //?3-bosqich ishlatildi
-
+  const { setTopRestaurants } = actionDispatch(useDispatch());
 
   useEffect(() => {
-    //backenddan data request => data => data kelsa 1-bosqich: redux Store ga datani slice orqali yozadi(yozilish processi=> Slice, va uni ichida reducerlar boladi)
-    
-    setTopRestaurants([]);
+    //backend data request => data
+    const restaurantService = new RestaurantApiService();
+    restaurantService
+      .getTopRestaurants()
+      .then((data) => { //await emas then ni ishlatishga sabab useEffect doim sycris usulda hosil bolish kerak. 
+        //setRestaurant
+        setTopRestaurants(data);
+        console.log("setresultat:::", data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (

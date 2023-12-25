@@ -16,7 +16,7 @@ const HomePageSlice = createSlice({ //Slice bizni barcha action cratersni ozida 
   initialState,
   reducers: {
     setTopRestaurants: (state, action) => {
-      state.bestRestaurants = action.payload;
+      state.topRestaurants = action.payload;//state.bestRestaurants bolip qogani uchun 2 kun err qidirdim
     },
     bestRestaurants: (state, action) => {
       state.bestRestaurants = action.payload;
