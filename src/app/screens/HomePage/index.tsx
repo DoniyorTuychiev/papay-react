@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Container } from "@mui/material";
 import { Statistics } from "./statistics";
 // import { TopRestaurants } from './topRestaurants';
 import { TopRestaurants } from "./toprestaurants";
@@ -12,11 +11,9 @@ import { Recommendations } from "./recommendations";
 import "../../../app/css/home.css";
 
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
 import { setTopRestaurants, setBestRestaurants, setTrendProducts } from "./slice";
-import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../types/user";
 import RestaurantApiService from "../../apiService/restaurantApiService";
 import { Product } from "../../types/product";
