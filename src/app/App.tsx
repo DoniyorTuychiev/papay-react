@@ -18,19 +18,37 @@ import { Footer } from "./components/footer";
 import AuthenticationModal from "./components/auth";
 
 function App() {
+  /** INITIALIZATIONS */
   const [path, setPath] = useState();
-  const main_path = window.location.pathname; //qaysi headerni qachon ishlatish kerekligini path orqali tashkillab olinadi
+  const main_path = window.location.pathname;
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
-  console.log("main_path=>", main_path); //orders ni ichida turib obnavleniya qilsak  main_path=. LoginPagedeb korsatadi
-
+  /**  HANDLES  */
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
   return (
     <Router>
       {main_path == "/" ? (
-        <NavbarHome setPath={setPath} />
+        <NavbarHome
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant setPath={setPath} />
+        <NavbarRestaurant
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : (
-        <NavbarOthers setPath={setPath} /> //shu yerga setPath={setPath} ni qoymaganim uchun fon rasmlari ozgarmadi
+        <NavbarOthers
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        /> //shu yerga setPath={setPath} ni qoymaganim uchun fon rasmlari ozgarmadi
       )}
 
       <Switch>
@@ -58,10 +76,16 @@ function App() {
       </Switch>
       <Footer />
 
-      <AuthenticationModal/>
+      <AuthenticationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signUpOpen={signUpOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        handleSignClose={handleSignClose}
+      />
     </Router>
   );
 }
 
 export default App;
-

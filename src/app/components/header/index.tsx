@@ -8,18 +8,20 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 
 export function NavbarHome(props: any) {
-    /**INITIALIZATIONS */
-  const [count, setCount] = useState(0);        
+  /**INITIALIZATIONS */
+  const [count, setCount] = useState(0);
   const [value, setValue] = useState(true);
 
   //? componentDidUpdate with useEffect and useState
-  useEffect(()=>{ 
-    setCount(count + 1); },[value]);
-  
-    /** HANDLERS **/
-    
+  useEffect(() => {
+    setCount(count + 1);
+  }, [value]);
+
+  /** HANDLERS **/
+
   return (
     <div className="format home_navbar">
       <Container>
@@ -82,8 +84,9 @@ export function NavbarHome(props: any) {
               <Button
                 variant="contained"
                 style={{ color: "#FFFFFF", background: "#1976d2" }}
+                onClick={props.handleLoginOpen}
               >
-                Kirish
+                KIRISH
               </Button>
             </Box>
           </Stack>
@@ -112,7 +115,7 @@ export function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#FFFFFF",
                 }}
-                onClick={()=> setValue(!value)}//valuni teskari qiymatini yubordim.(useEffect ni ishlatilishi)
+                onClick={props.handleSignUpOpen} //valuni teskari qiymatini yubordim.(useEffect ni ishlatilishi)
               >
                 RO’YHATDAN O’TISH
               </Button>

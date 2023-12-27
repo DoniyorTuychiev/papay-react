@@ -62,6 +62,7 @@ export function NavbarRestaurant (props: any) {
                         variant="contained" 
                         style={{color:"#FFFFFF", 
                         background: "#1976d2"}}
+                        onClick={props.handleLoginOpen}
                         >
                             Kirish
                         </Button>
