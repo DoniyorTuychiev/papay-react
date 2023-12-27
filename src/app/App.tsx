@@ -26,7 +26,7 @@ function App() {
 
   /**  HANDLES  */
   const handleSignUpOpen = () => setSignUpOpen(true);
-  const handleSignClose = () => setSignUpOpen(false);
+  const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
   return (
@@ -82,7 +82,7 @@ function App() {
         handleLoginClose={handleLoginClose}
         signUpOpen={signUpOpen}
         handleSignUpOpen={handleSignUpOpen}
-        handleSignClose={handleSignClose}
+        handleSignUpClose={handleSignUpClose}
       />
     </Router>
   );

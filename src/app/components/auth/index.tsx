@@ -50,6 +50,28 @@ export default function AuthenticationModal(props: any) {
     mb_password = e.target.value;
   };
 
+  const handleSignUpRequest = async () => {
+    try {
+      const is_fulfilled = mb_nick != "" && mb_password != "" && mb_phone != 0;
+      assert.ok(is_fulfilled, Definer.input_err1);
+
+      const signup_data = {
+        mb_nick: mb_nick,
+        mb_phone: mb_phone,
+        mb_password: mb_password,
+      };
+
+      const memberApiService = new MemberApiService();
+      await memberApiService.signupRequest(signup_data);
+
+      props.handleSignUpClose();
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   const handleLoginRequest = async () => {
     try {
       const is_fulfilled = mb_nick != "" && mb_password != "";
@@ -75,7 +97,7 @@ export default function AuthenticationModal(props: any) {
   return (
     <div>
       {/*@ts-ignore*/}
-      <Modal
+      <Modal //SignUpModel
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
@@ -97,27 +119,27 @@ export default function AuthenticationModal(props: any) {
             <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
               <h2>SignUp Form</h2>
               <TextField
-                // onChange={}
+                onChange={handleUsername}
                 sx={{ marginTop: "7px" }}
                 id="outlined-basic"
                 label="username"
                 variant="outlined"
               />
               <TextField
-                // onChange={}
+                onChange={handlePhone}
                 sx={{ my: "17px" }}
                 id="outlined-basic"
                 label="phone number"
                 variant="outlined"
               />
               <TextField
-                // onChange={}
+                onChange={handlePassword}
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
               />
               <Fab
-                // onClick={}
+                onClick={handleSignUpRequest}
                 sx={{ marginTop: "30px", width: "120px" }}
                 variant="extended"
                 color="primary"
@@ -131,7 +153,7 @@ export default function AuthenticationModal(props: any) {
       </Modal>
 
       {/*@ts-ignore*/}
-      <Modal
+      <Modal  //LoginModel
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
