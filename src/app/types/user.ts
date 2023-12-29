@@ -10,7 +10,7 @@ export interface Restaurant {
   mb_status: string;
   mb_discription: string;
   mb_address: string;
-  mb_image: string;
+  mb_image?: string;
   mb_point: string;
   mb_top: string;
   mb_views: number;
@@ -30,7 +30,7 @@ export interface Member {
   mb_status: string;
   mb_discription: string; 
   mb_address: string; 
-  mb_image: string; 
+  mb_image?: string; 
   mb_point: string;
   mb_top: string;
   mb_views: number;

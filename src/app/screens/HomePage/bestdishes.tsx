@@ -12,8 +12,8 @@ import ProductApiService from "../../apiService/productApiService";
 import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE  */
-const actionDispatch = (dispach: Dispatch) => ({
-  setTrendProducts: (data: Product[]) => dispach(setTrendProducts(data)),
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTrendProducts: (data: Product[]) => dispatch(setTrendProducts(data)),
 });
 
 /****************************

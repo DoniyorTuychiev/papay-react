@@ -102,7 +102,7 @@ export default function AuthenticationModal(props: any) {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={props.signUpOpen}
-        onClose={props.handleSignClose}
+        onClose={props.handleSignUpClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{

@@ -69,7 +69,14 @@ export function BestRestaurants() {
                           color: "rgb(0,0,0,.4)",
                         }}
                       >
-                        <Favorite style={{ fill: "white" }} />
+                        <Favorite
+                          style={{
+                            fill:
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite //todo: Savol=> my_favorite underfined chiqdi nimaga?
+                                ? "red"
+                                : "white",
+                          }}
+                        />
                       </IconButton>
                     </CardOverflow>
                     <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>

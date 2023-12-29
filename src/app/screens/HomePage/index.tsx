@@ -21,10 +21,10 @@ import { Product } from "../../types/product";
 /****************************
  *      REDUX SLICE         *
  ****************************/
-const actionDispatch = (dispach: Dispatch) => ({
-  setTopRestaurants: (data: Restaurant[]) => dispach(setTopRestaurants(data)),
-  setBestRestaurants: (data: Restaurant[]) => dispach(setBestRestaurants(data)),
-  setTrendProducts: (data: Product[]) => dispach(setTrendProducts(data)),
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTopRestaurants: (data: Restaurant[]) => dispatch(setTopRestaurants(data)),
+  setBestRestaurants: (data: Restaurant[]) => dispatch(setBestRestaurants(data)),
+  setTrendProducts: (data: Product[]) => dispatch(setTrendProducts(data)),
 });
 
 export function HomePage() {
