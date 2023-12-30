@@ -128,8 +128,8 @@ export function TopRestaurants() {
                         px: "var(--Card-padding)",
                         borderTop: "1px solid rgb(107, 105, 103)",
                       }}
-                      >
-                      <IconButton 
+                    >
+                      <IconButton
                         aria-label="Like minimal photography"
                         size="md"
                         variant="solid"
@@ -143,7 +143,9 @@ export function TopRestaurants() {
                           transform: "translateY(50%)",
                           color: "rgb(0,0,0,.4)",
                         }}
-                        onClick={(e)=>{e.stopPropagation()}}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         <Favorite
                           onClick={(e) => targetLikeTop(e, ele._id)}

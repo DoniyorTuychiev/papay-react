@@ -116,7 +116,9 @@ export function BestRestaurants() {
                           transform: "translateY(50%)",
                           color: "rgb(0,0,0,.4)",
                         }}
-                        onClick={(e)=>{e.stopPropagation()}}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         <Favorite
                           onClick={(e) => targetLikeBest(e, ele._id)}
@@ -203,7 +205,10 @@ export function BestRestaurants() {
             justifyContent={"flex-end"}
             style={{ width: "100%", marginTop: "16px" }}
           >
-            <Button style={{ background: "#1976d2", color: "#ffffff" }}>
+            <Button
+              style={{ background: "#1976d2", color: "#ffffff" }}
+              onClick={goRestaurantHandler}
+            >
               Barchasini Korish
             </Button>
           </Stack>

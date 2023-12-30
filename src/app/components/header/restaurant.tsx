@@ -32,10 +32,14 @@ export function NavbarRestaurant(props: any) {
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/">Bosh Sahifa</NavLink>
+              <NavLink to="/">
+                Bosh Sahifa
+              </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/restaurant" activeClassName="underline">Oshxona</NavLink>
+              <NavLink to="/restaurant" activeClassName="underline">
+                Oshxona
+              </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/orders" activeClassName="underline">
@@ -90,7 +94,7 @@ export function NavbarRestaurant(props: any) {
                 onClick={props.handleLogOutClick}
               />
             )}
-            
+
             <Menu
               anchorEl={props.anchorEl}
               open={props.open}
@@ -126,9 +130,7 @@ export function NavbarRestaurant(props: any) {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem
-              onClick={props.handleLogOutRequest}
-              >
+              <MenuItem onClick={props.handleLogOutRequest}>
                 <ListItemIcon>
                   <Logout fontSize="small" style={{ color: "blue" }} />
                 </ListItemIcon>
