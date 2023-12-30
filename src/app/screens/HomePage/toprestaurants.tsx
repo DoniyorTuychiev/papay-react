@@ -16,11 +16,16 @@ import { createSelector } from "reselect";
 import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../types/user";
 import { serverApi } from "../../../lib/config";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert,
+} from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiService/memberApiService";
 import { group } from "console";
+import { useHistory } from "react-router-dom";
 
 /****************************
  *      REDUX Selector      *
@@ -34,19 +39,13 @@ const topRestaurantRetriever = createSelector(
 
 export function TopRestaurants() {
   /** INITIALIZATION   */
+  const history = useHistory();
   const { topRestaurants } = useSelector(topRestaurantRetriever);
   const refs: any = useRef([]);
 
   /** Handlers */
-
-  const chosenRestaurantHandler = async (id: string)=>{
-    try{
-
-    }catch(err:any){
-      console.log("targetLikeTop, ERROR", err);
-      sweetErrorHandling(err).then();
-    }
-  }
+  const chosenRestaurantHandler = async (id: string) =>
+    history.push(`/restaurant/${id}`);
 
   const targetLikeTop = async (e: any, id: string) => {
     try {
@@ -66,6 +65,8 @@ export function TopRestaurants() {
         e.target.style.fill = "white";
         refs.current[like_result.like_ref_id].innerHTML--;
       }
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
     } catch (err: any) {
       console.log("targetLikeTop, ERROR", err);
       sweetErrorHandling(err).then();
@@ -86,14 +87,11 @@ export function TopRestaurants() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
-                  <Card onClick={()=>{chosenRestaurantHandler(ele._id)}}
+                  <Card
+                    onClick={() => {
+                      chosenRestaurantHandler(ele._id);
+                    }}
                     className="main_card"
-                    // sx={{
-                    //   minHeight: 430,
-                    //   minwidth: 325,
-                    //   mr: "35px",
-                    //   cursor: "pointer",
-                    // }}
                   >
                     <CardCover>
                       <img src={image_path} loading="lazy" alt="" />
@@ -130,8 +128,8 @@ export function TopRestaurants() {
                         px: "var(--Card-padding)",
                         borderTop: "1px solid rgb(107, 105, 103)",
                       }}
-                    >
-                      <IconButton
+                      >
+                      <IconButton 
                         aria-label="Like minimal photography"
                         size="md"
                         variant="solid"
@@ -145,6 +143,7 @@ export function TopRestaurants() {
                           transform: "translateY(50%)",
                           color: "rgb(0,0,0,.4)",
                         }}
+                        onClick={(e)=>{e.stopPropagation()}}
                       >
                         <Favorite
                           onClick={(e) => targetLikeTop(e, ele._id)}
