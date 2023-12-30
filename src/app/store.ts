@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import HomePageReducer from './screens/HomePage/slice';
 import reduxLogger from "redux-logger";
+import RestaurantPageReducer from './screens/RestaurantPage/slice';
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>  //console.log da korinish uchun middleware qilib ishlatildi. va nomini getDefaultMiddleware deb oldik
@@ -8,6 +9,7 @@ export const store = configureStore({
   
   reducer: { //reduxni ichida qanday malumot borligini bilish uchun redux-loger pakege kerak boladi.TSni ishlatyotkanimiz uchun @types/redux-logger pakege ham kerak aks holda err berishi mumkin
     homePage: HomePageReducer, //slice ni reduce ichiga biriktirdik
+    restaurantPage: RestaurantPageReducer,
   },
 });
 
