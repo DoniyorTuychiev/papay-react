@@ -39,6 +39,15 @@ export function TopRestaurants() {
 
   /** Handlers */
 
+  const chosenRestaurantHandler = async (id: string)=>{
+    try{
+
+    }catch(err:any){
+      console.log("targetLikeTop, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  }
+
   const targetLikeTop = async (e: any, id: string) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
@@ -77,7 +86,7 @@ export function TopRestaurants() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
-                  <Card 
+                  <Card onClick={()=>{chosenRestaurantHandler(ele._id)}}
                     className="main_card"
                     // sx={{
                     //   minHeight: 430,
