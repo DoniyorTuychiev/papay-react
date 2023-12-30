@@ -2,7 +2,7 @@ import { BoArticle } from "./boArticle";
 import { Product } from "./product";
 import { Restaurant } from "./user";
 
-export interface AppRootState {
+export interface AppRootState { //centralni interface (butun projectni qolipi)
   homePage: HomePageState;
 }
 

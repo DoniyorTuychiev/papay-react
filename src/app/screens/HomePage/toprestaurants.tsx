@@ -1,5 +1,5 @@
 import { Box, Container, Stack } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
@@ -16,6 +16,11 @@ import { createSelector } from "reselect";
 import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../types/user";
 import { serverApi } from "../../../lib/config";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiService/memberApiService";
+import { group } from "console";
 
 /****************************
  *      REDUX Selector      *
@@ -30,6 +35,42 @@ const topRestaurantRetriever = createSelector(
 export function TopRestaurants() {
   /** INITIALIZATION   */
   const { topRestaurants } = useSelector(topRestaurantRetriever);
+  const refs: any = useRef([]);
+
+  /** Handlers */
+
+  // const chosenRestaurantHandler = async (id: string)=>{
+  //   try{
+
+  //   }catch(err:any){
+  //     console.log("targetLikeTop, ERROR", err);
+  //     sweetErrorHandling(err).then();
+  //   }
+  // }
+
+  const targetLikeTop = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+    } catch (err: any) {
+      console.log("targetLikeTop, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="top_restaurant_frame">
@@ -45,7 +86,7 @@ export function TopRestaurants() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
-                  <Card
+                  <Card onClick={()=>{chosenRestaurantHandler(ele._id)}}
                     className="main_card"
                     // sx={{
                     //   minHeight: 430,
@@ -106,11 +147,12 @@ export function TopRestaurants() {
                         }}
                       >
                         <Favorite
+                          onClick={(e) => targetLikeTop(e, ele._id)}
                           style={{
                             fill:
                               ele?.me_liked && ele?.me_liked[0]?.my_favorite //todo: Savol=> my_favorite underfined chiqdi nimaga?
                                 ? "red"
-                                :"white",
+                                : "whit",
                           }}
                         />
                       </IconButton>
@@ -138,7 +180,13 @@ export function TopRestaurants() {
                           display: "flex",
                         }}
                       >
-                        <div>{ele.mb_likes}</div>
+                        <div
+                          ref={(element) => {
+                            refs.current[ele._id] = element;
+                          }}
+                        >
+                          {ele.mb_likes}
+                        </div>
                         <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
                       </Typography>
                     </CardOverflow>

@@ -11,8 +11,8 @@ class RestaurantApiService {
   constructor() {
     this.path = serverApi;
   }
-
-  async getTopRestaurants() {
+  
+  async getTopRestaurants(): Promise<Restaurant[]> { //bu asyncris method bolgani uchun uni type yoziladi yani Pyomis qilaman bu methoddan data qaytadi deb
     try {
       const url = "/restaurants?order=top&page=1&limit=4",
         result = await axios.get(this.path + url, { withCredentials: true });
@@ -28,7 +28,7 @@ class RestaurantApiService {
     }
   }
 
-  async getRestaurants(data: SeachObj) {
+  async getRestaurants(data: SeachObj): Promise<Restaurant[]> {
     try {
       const url = `/restaurants?order=${data.order}&page=${data.page}&limit=${data.limit}`,
         result = await axios.get(this.path + url, { withCredentials: true });
