@@ -154,7 +154,7 @@ export function TopRestaurants() {
                             fill:
                               ele?.me_liked && ele?.me_liked[0]?.my_favorite //todo: Savol=> my_favorite underfined chiqdi nimaga?
                                 ? "red"
-                                : "whit",
+                                : "white",
                           }}
                         />
                       </IconButton>

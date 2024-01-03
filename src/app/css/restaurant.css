@@ -24,6 +24,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
   }
   
   .restaurant_page .all_restaurant .fil_box a {
