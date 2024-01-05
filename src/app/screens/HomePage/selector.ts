@@ -1,11 +1,10 @@
 import { createSelector } from "reselect";
-import { AppRootState } from "../../types/screen";
+import { AppRootState } from "../../../types/screen";
 
-const selectHomePage = (state: AppRootState) => state.homePage; 
-
+const selectHomePage = (state: AppRootState) => state.homePage;
 export const retrieveTopRestaurants = createSelector(
   selectHomePage,
-  (HomePage) => HomePage.topRestaurants 
+  (HomePage) => HomePage.topRestaturants
 );
 export const retrieveBestRestaurants = createSelector(
   selectHomePage,
@@ -19,11 +18,11 @@ export const retrieveBestBoArticles = createSelector(
   selectHomePage,
   (HomePage) => HomePage.bestBoArticles
 );
-export const retrieveTrendBoarticles = createSelector(
+export const retrieveTrendBoArticles = createSelector(
   selectHomePage,
   (HomePage) => HomePage.trendBoArticles
 );
-export const retrieveNewBoArticles = createSelector(
+export const retrieveNewsBoArticles = createSelector(
   selectHomePage,
-  (HomePage) => HomePage.newBoArticles
+  (HomePage) => HomePage.newsBoArticles
 );

@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Basket from "./basket";
 
 export function NavbarOthers(props: any) {
   return (
@@ -36,19 +37,22 @@ export function NavbarOthers(props: any) {
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/restaurant" activeClassName="underline">
-                Oshxona
+                Restaurant
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Orders
+                </NavLink>
+              </Box>
+            ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/community" activeClassName="underline">
-                Jamiyat
+                Community
               </NavLink>
             </Box>
+
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
@@ -56,30 +60,26 @@ export function NavbarOthers(props: any) {
                 </NavLink>
               </Box>
             ) : null}
+
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
-                Yordam
+                Help
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                //   onClick={handleClick}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src="/icons/shopping-cart.svg" />
-                </Badge>
-              </IconButton>
-            </Box>
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderReBuild={props.setOrderReBuild}
+            />
+
             {!props.verifiedMemberData ? (
               <Box>
                 <Button
                   variant="contained"
-                  style={{ color: "#FFFFFF", background: "#1976d2" }}
+                  style={{ color: "#ffffff", background: "#1976d2" }}
                   onClick={props.handleLoginOpen}
                 >
                   KIRISH
@@ -101,7 +101,7 @@ export function NavbarOthers(props: any) {
                 elevation: 0,
                 sx: {
                   overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0,32))",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                   mt: 1.5,
                   "& .MuiAvatar-root": {
                     width: 32,
@@ -118,7 +118,7 @@ export function NavbarOthers(props: any) {
                     width: 10,
                     height: 10,
                     bgcolor: "background.paper",
-                    transform: "translatY(-50%) rotate(45deg)",
+                    transform: "translateY(-50%) rotate(45deg)",
                     zIndex: 0,
                   },
                 },
@@ -126,9 +126,7 @@ export function NavbarOthers(props: any) {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem
-              onClick={props.handleLogOutRequest}
-              >
+              <MenuItem onClick={props.handleLogOutRequest}>
                 <ListItemIcon>
                   <Logout fontSize="small" style={{ color: "blue" }} />
                 </ListItemIcon>

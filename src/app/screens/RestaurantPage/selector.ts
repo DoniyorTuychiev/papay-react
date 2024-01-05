@@ -1,27 +1,30 @@
 import { createSelector } from "reselect";
-import { AppRootState } from "../../types/screen";
-import { stat } from "fs";
-import RestaurantPage from ".";
+import { AppRootState } from "../../../types/screen";
+import { RestaurantPage } from ".";
 
-const selectRestaurantPage = (state: AppRootState) => state.restaurantPage;
 
+const selecetRestaurantPage = (state: AppRootState) => state.restaurantPage;
 export const retrieveTargetRestaurants = createSelector(
-  selectRestaurantPage,
-  (RestaurantPage) => RestaurantPage.targetRestaurants
+    selecetRestaurantPage,
+    (RestaurantPage) => RestaurantPage.targetRestaurants
 );
 export const retrieveRandomRestaurants = createSelector(
-  selectRestaurantPage,
-  (RestaurantPage) => RestaurantPage.rendomRestaurants
+    selecetRestaurantPage,
+    (RestaurantPage) => RestaurantPage.randomRestaurants
 );
-export const retrieveChosenRestaurants = createSelector(
-  selectRestaurantPage,
-  (RestaurantPage) => RestaurantPage.chosenRestaurants
+
+export const retrieveChosenRestaurant = createSelector( 
+    selecetRestaurantPage,
+    (RestaurantPage) => RestaurantPage.chosenRestaurant
 );
+
 export const retrieveTargetProducts = createSelector(
-  selectRestaurantPage,
-  (RestaurantPage) => RestaurantPage.targetProducts
+    selecetRestaurantPage,
+    (RestaurantPage) => RestaurantPage.targetProducts
 );
+
 export const retrieveChosenProduct = createSelector(
-  selectRestaurantPage,
-  (RestaurantPage) => RestaurantPage.chosenProduct
+    selecetRestaurantPage,
+    (RestaurantPage) => RestaurantPage.chosenProduct
 );
+

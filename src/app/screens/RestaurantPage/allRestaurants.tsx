@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Container, Stack, Button } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
@@ -17,32 +16,34 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CallIcon from "@mui/icons-material/Call";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import React, { useRef } from "react";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
+import { retrieveTargetRestaurants } from "../RestaurantPage/selector";
 import { createSelector } from "reselect";
-import { retrieveTargetRestaurants } from "../../screens/RestaurantPage/selector";
-import { Restaurant } from "../../types/user";
-import { Dispatch } from "@reduxjs/toolkit";
-import { setTargetRestaurants } from "../RestaurantPage/slice";
-import RestaurantApiService from "../../apiService/restaurantApiService";
-import { SearchObj } from "../../types/others";
+import { Restaurant } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
-import { Category } from "@mui/icons-material";
-import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../apiService/memberApiService";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetRestaurants } from "../../screens/RestaurantPage/slice";
+import { useEffect, useState } from "react";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
+import { SearchObj } from "../../../types/others";
 import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { useHistory } from "react-router-dom";
 
-//REDUX SLICE
-const actionDispatch = (dispatch: Dispatch) => ({
+// REDUX SLICE
+const actionDispatch = (dispach: Dispatch) => ({
   setTargetRestaurants: (data: Restaurant[]) =>
-    dispatch(setTargetRestaurants(data)),
+    dispach(setTargetRestaurants(data)),
 });
 
-//REDUX Selector
+// REDUX SELECTOR
 const targetRestaurantsRetriever = createSelector(
   retrieveTargetRestaurants,
   (targetRestaurants) => ({
@@ -51,45 +52,43 @@ const targetRestaurantsRetriever = createSelector(
 );
 
 export function AllRestaurants() {
-  /** INITIALIZATION   */
+  /**INITIALIZATIONS */
+  const history = useHistory();
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
     page: 1,
-    limit: 8,
+    limit: 4,
     order: "mb_point",
   });
-
   const refs: any = useRef([]);
 
   useEffect(() => {
-    //TODO: Retrive TargetRestaurantsData
     const restaurantService = new RestaurantApiService();
     restaurantService
       .getRestaurants(targetSearchObject)
       .then((data) => setTargetRestaurants(data))
       .catch((err) => console.log(err));
   }, [targetSearchObject]);
-
-  /** HANDLERS */
-
-  const searchHandler = (Category: string) => {
-    targetSearchObject.page = 1; //qaysi category ga otsa ham 1- page dan ochsin manosi
-    targetSearchObject.order = Category;
-    setTargetSearchObject({ ...targetSearchObject }); //targetSearchObj ni faqatgina qiymati emas refrensi ham ozgarsagina ishlaydi.shuning uchun ... nuqta bilan yangi ref hisl qildik
+  /**HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurant/${id}`);
   };
-
-  const handlPaginationChange = (event: any, value: number) => {
+  const searchHandler = (category: string) => {
+    targetSearchObject.page = 1;
+    targetSearchObject.order = category;
+    setTargetSearchObject({ ...targetSearchObject });
+  };
+  const handlePaginationChange = (event: any, value: number) => {
     targetSearchObject.page = value;
     setTargetSearchObject({ ...targetSearchObject });
   };
-
   const targetLikeHandler = async (e: any, id: string) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
 
       const memberService = new MemberApiService(),
-        like_result: any = await memberService.memberLikeTarget({
+        like_result = await memberService.memberLikeTarget({
           like_ref_id: id,
           group_type: "member",
         });
@@ -105,7 +104,7 @@ export function AllRestaurants() {
 
       await sweetTopSmallSuccessAlert("success", 700, false);
     } catch (err: any) {
-      console.log("targetLikeTop, ERROR", err);
+      console.log("targetLikeTop, ERROR:", err);
       sweetErrorHandling(err).then();
     }
   };
@@ -115,7 +114,7 @@ export function AllRestaurants() {
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fil_search_box"}>
-            <Box className={"fil_box"}>
+            <Box className={"fil_box"} style={{ cursor: "pointer" }}>
               <a onClick={() => searchHandler("mb_point")}>Zo'r</a>
               <a onClick={() => searchHandler("mb_views")}>Mashhurlar</a>
               <a onClick={() => searchHandler("mb_likes")}>Trenddagi</a>
@@ -145,12 +144,14 @@ export function AllRestaurants() {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <Card
+                    onClick={() => chosenRestaurantHandler(ele._id)}
                     variant="outlined"
                     sx={{
                       minHeight: 410,
                       minWidth: 290,
                       mx: "17px",
                       my: "20px",
+                      cursor: "pointer",
                     }}
                   >
                     <CardOverflow>
@@ -179,7 +180,7 @@ export function AllRestaurants() {
                           onClick={(e) => targetLikeHandler(e, ele._id)}
                           style={{
                             fill:
-                              ele?.me_liked && ele?.me_liked[0]?.my_favorite //todo: Savol=> my_favorite underfined chiqdi nimaga?
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
                                 ? "red"
                                 : "white",
                           }}
@@ -244,9 +245,7 @@ export function AllRestaurants() {
                         }}
                       >
                         <div
-                          ref={(element) => {
-                            refs.current[ele._id] = element;
-                          }}
+                          ref={(element) => (refs.current[ele._id] = element)}
                         >
                           {ele.mb_likes}
                         </div>
@@ -262,7 +261,7 @@ export function AllRestaurants() {
           </Stack>
 
           <Stack className="bottom_box">
-            <img src="/icons/right_naqsh.svg" className="line_img" alt="" />
+            <img src="/icons/right_angel.svg" className="line_img" alt="" />
             <Pagination
               count={
                 targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
@@ -278,9 +277,9 @@ export function AllRestaurants() {
                   color={"secondary"}
                 />
               )}
-              onChange={handlPaginationChange}
+              onChange={handlePaginationChange}
             />
-            <img src="/icons/right_naqsh.svg" className="line_img_two" alt="" />
+            <img src="/icons/right_angel.svg" className="line_img_two" alt="" />
           </Stack>
         </Stack>
       </Container>

@@ -1,34 +1,35 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import "./css/App.css";
-import "./css/navbar.css";
-import "./css/footer.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import "../css/App.css";
+import "../css/navbar.css";
+import "../css/footer.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { CommunityPage } from "./screens/CommunityPage";
-import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
+import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
 import { HomePage } from "./screens/HomePage";
+import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
-import { NavbarHome } from "./components/header";
 import { Footer } from "./components/footer";
 import AuthenticationModal from "./components/auth";
-import { Member } from "./types/user";
+import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
+import MemberApiService from "./apiServices/memberApiService";
 import {
   sweetFailureProvider,
   sweetTopSmallSuccessAlert,
 } from "../lib/sweetAlert";
 import { Definer } from "../lib/Definer";
 import assert from "assert";
-import MemberApiService from "./apiService/memberApiService";
-import "../app/apiService/verify";
+import { CartItem } from "../types/others";
+import { Product } from "../types/product";
 
 function App() {
-  /** INITIALIZATIONS */
+  // INITIALIZATION
   const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(
     null
   );
@@ -36,11 +37,17 @@ function App() {
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [orderReBuild, setOrderReBuild] = useState<Date>(new Date());
 
-  const [anchorEl, setAnchoreEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+
   useEffect(() => {
+    console.log("====useEffect====: App:");
     const memberDataJson: any = localStorage.getItem("member_data")
       ? localStorage.getItem("member_data")
       : null;
@@ -51,22 +58,20 @@ function App() {
         : "/auth/default_user.svg";
       setVerifiedMemberData(member_data);
     }
-  }, [signUpOpen, loginOpen]); //[signUpOpen, loginOpen] arrayga bunday qiymat berish project run bolganda useEffect default bitta ishlab oladi
-  //va signUpOpen va loginOpen qiymatlari ozgarganda yana bir ishlashini buyuradi
-  /**  HANDLES  */
+  }, [signUpOpen, loginOpen]);
+
+  // HANDLERS
   const handleSignUpOpen = () => setSignUpOpen(true);
   const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
 
-  /** HANDLERS **/
   const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchoreEl(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
   const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchoreEl(null);
+    setAnchorEl(null);
   };
-
   const handleLogOutRequest = async () => {
     try {
       const memberApiService = new MemberApiService();
@@ -78,58 +83,136 @@ function App() {
     }
   };
 
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems.find(
+      (item: CartItem) => item._id === product._id
+    );
+    if (exist) {
+      const cart_update = cartItems.map((item: CartItem) =>
+        item._id === product._id
+          ? { ...exist, quantity: exist.quantity + 1 }
+          : item
+      );
+      setCartItems(cart_update);
+      localStorage.setItem("cart_data", JSON.stringify(cart_update));
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        name: product.product_name,
+        price: product.product_price,
+        image: product.product_images[0],
+      };
+      const cart_updated = [...cartItems, { ...new_item }];
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onRemove = (item: CartItem) => {
+    const item_data: any = cartItems.find(
+      (ele: CartItem) => ele._id === item._id
+    );
+    if (item_data.quantity === 1) {
+      const cart_updated = cartItems.filter(
+        (ele: CartItem) => ele._id !== item._id
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const cart_updated = cartItems.map((ele: CartItem) =>
+        ele._id === item._id
+          ? { ...item_data, quantity: item_data.quantity - 1 }
+          : ele
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onDelete = (item: CartItem) => {
+    const cart_updated = cartItems.filter(
+      (ele: CartItem) => ele._id !== item._id
+    );
+    setCartItems(cart_updated);
+    localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+  };
+  const onDeleteAll = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart_data");
+  };
   return (
     <Router>
       {main_path == "/" ? (
         <NavbarHome
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignUpOpen={handleSignUpOpen}
           anchorEl={anchorEl}
           open={open}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
           handleLogOutClick={handleLogOutClick}
-          handleLoginClose={handleCloseLogOut}
+          handleCloseLogOut={handleCloseLogOut}
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+          setOrderReBuild={setOrderReBuild}
         />
       ) : main_path.includes("/restaurant") ? (
         <NavbarRestaurant
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignUpOpen={handleSignUpOpen}
           anchorEl={anchorEl}
           open={open}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
           handleLogOutClick={handleLogOutClick}
-          handleLoginClose={handleCloseLogOut}
+          handleCloseLogOut={handleCloseLogOut}
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+          setOrderReBuild={setOrderReBuild}
         />
       ) : (
         <NavbarOthers
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignUpOpen={handleSignUpOpen}
           anchorEl={anchorEl}
           open={open}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
           handleLogOutClick={handleLogOutClick}
-          handleLoginClose={handleCloseLogOut}
+          handleCloseLogOut={handleCloseLogOut}
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
-        /> //shu yerga setPath={setPath} ni qoymaganim uchun fon rasmlari ozgarmadi
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+          setOrderReBuild={setOrderReBuild}
+        />
       )}
 
       <Switch>
         <Route path="/restaurant">
-          <RestaurantPage />
+          <RestaurantPage onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />
         </Route>
+        <Route path="/orders">
+          <OrdersPage
+            orderReBuild={orderReBuild}
+            setOrderReBuild={setOrderReBuild}
+            verifiedMemberData={verifiedMemberData}
+          />
+        </Route>
         <Route path="/member-page">
           <MemberPage />
-        </Route>
-        <Route path="/orders">
-          <OrdersPage />
         </Route>
         <Route path="/help">
           <HelpPage />
@@ -141,8 +224,8 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
-      <Footer />
 
+      <Footer />
       <AuthenticationModal
         loginOpen={loginOpen}
         handleLoginOpen={handleLoginOpen}

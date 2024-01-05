@@ -5,6 +5,4 @@ export function LoginPage() {
     return (
         <Container>LoginPage</Container>
     );
-}
-
-export default LoginPage;
+};

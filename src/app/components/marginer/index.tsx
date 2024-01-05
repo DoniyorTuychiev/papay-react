@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 export interface IMarginerProps {
-  width?: string;                         //? ni qoyish px bolsayam boladi bolmasayam boladi degani. Languages 2 xil boladi
-  height?: string;                       // compaling languages ( Java, C#, C++) bularda 2 ta faza ishga tushadi 
-  direction?: "horizontal" | "vertical";//1-faza compaling err 2- faza run err va interpriting languages(pyton, nodeJs, PHP)bularda esa faqat ru time fazasi bor
-  bg?: string;                         //aynana TypeScrip faqat run fazada ishledigan tillarda TypeScript compailing err xususiyatini beradi yani run bolishdan oldin tagiga qizill bilan err haqida ogihlantiradi
+  width?: string;
+  height?: string;
+  direction?: "horizontal" | "vertical";
+  bg?: string;
 }
 
 const HorizontalMargin = styled.span<IMarginerProps>`

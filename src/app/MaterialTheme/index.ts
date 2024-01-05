@@ -15,11 +15,9 @@ const light = {
     },
     primary: {
       contrastText: "#ffffff",
-      // main: "#c40909",
       main: "#1976d2",
     },
     secondary: {
-      // main: "#0383a3",
       main: "#c40909",
     },
     text: {
@@ -49,13 +47,13 @@ const light = {
 };
 
 // A custom theme for this app
-let theme = createTheme(light); //Bu qism displayni hamma devicelar displayiga moslashishi uchun 
-theme = createTheme(theme, {    // maxWidth: 1320px gacha deb qabul qilib oldik
+let theme = createTheme(light);
+theme = createTheme(theme, {
   components: {
     MuiContainer: {
       styleOverrides: {
         maxWidthLg: {
-          [theme.breakpoints.up("lg")]: { //container hech qandey format qoymasek byDefauld  lg (yani large )ni oladi
+          [theme.breakpoints.up("lg")]: {
             maxWidth: "1320px",
           },
         },
@@ -63,5 +61,4 @@ theme = createTheme(theme, {    // maxWidth: 1320px gacha deb qabul qilib oldik
     },
   },
 });
-
 export default theme;

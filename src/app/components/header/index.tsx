@@ -1,4 +1,4 @@
-import { Logout } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
 import {
   Badge,
   Box,
@@ -10,10 +10,14 @@ import {
   MenuItem,
   Stack,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
+import { Logout } from "@mui/icons-material";
+import Basket from "./basket";
 
 export function NavbarHome(props: any) {
+  // INITIALIZATION
+
   return (
     <div className="format home_navbar">
       <Container>
@@ -33,22 +37,24 @@ export function NavbarHome(props: any) {
           >
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/" activeClassName="underline">
-                Bosh Sahifa
+                Home
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/restaurant" activeClassName="underline">
-                Oshxona
+                Restaurant
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Orders
+                </NavLink>
+              </Box>
+            ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/community" activeClassName="underline">
-                Jamiyat
+                Community
               </NavLink>
             </Box>
             {props.verifiedMemberData ? (
@@ -60,28 +66,25 @@ export function NavbarHome(props: any) {
             ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
-                Yordam
+                Help
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                //   onClick={handleClick}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src="/icons/shopping-cart.svg" />
-                </Badge>
-              </IconButton>
-            </Box>
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderReBuild={props.setOrderReBuild}
+            />
             {!props.verifiedMemberData ? (
               <Box>
                 <Button
                   variant="contained"
-                  style={{ color: "#FFFFFF", background: "#1976d2" }}
+                  style={{
+                    color: "#fffff",
+                    background: "#1976d2",
+                  }}
                   onClick={props.handleLoginOpen}
                 >
                   KIRISH
@@ -94,7 +97,6 @@ export function NavbarHome(props: any) {
                 onClick={props.handleLogOutClick}
               />
             )}
-
             <Menu
               anchorEl={props.anchorEl}
               open={props.open}
@@ -129,8 +131,7 @@ export function NavbarHome(props: any) {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem onClick={props.handleLogOutRequest}
-              >
+              <MenuItem onClick={props.handleLogOutRequest}>
                 <ListItemIcon>
                   <Logout fontSize="small" style={{ color: "blue" }} />
                 </ListItemIcon>
@@ -140,19 +141,19 @@ export function NavbarHome(props: any) {
           </Stack>
         </Stack>
 
-        <Stack className="head_information" justifyContent={"row"}>
+        <Stack className="head_information">
           <Stack
             justifyContent={"column"}
-            style={{ marginTop: "86px", marginLeft: "24px" }}
+            sx={{ marginTop: "86px", marginLeft: "24px" }}
           >
             <Box>
-              <img src="/icons/welcome.svg" />
+              <img src="/icons/welcomes.svg" />
             </Box>
-            <Box className="define_restaurant">
+            <Box className="define_restaurat">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">24/7 soat xizmatingizdamiz.</Box>
-            <Box sx={{ marginTop: "90px" }}>
+            <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
+            <Box sx={{ mt: "90px" }}>
               {!props.verifiedMemberData ? (
                 <Button
                   variant="contained"
@@ -160,16 +161,17 @@ export function NavbarHome(props: any) {
                     width: "210px",
                     height: "60px",
                     background: "#1976d2",
-                    color: "#FFFFFF",
                   }}
-                  onClick={props.handleSignUpOpen} //valuni teskari qiymatini yubordim.(useEffect ni ishlatilishi)
+                  onClick={props.handleSignUpOpen}
                 >
-                  RO’YHATDAN O’TISH
+                  RO'YHATDAN O'TISH
                 </Button>
               ) : null}
             </Box>
           </Stack>
-          <Box className="big_img"></Box>
+          <Stack flexDirection={"column"}>
+            <div className="big_img"></div>
+          </Stack>
         </Stack>
       </Container>
     </div>

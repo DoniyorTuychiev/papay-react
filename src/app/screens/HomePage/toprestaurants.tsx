@@ -5,33 +5,29 @@ import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
+import CallIcon from "@mui/icons-material/Call";
 import { CssVarsProvider } from "@mui/joy/styles";
-import CardOverflow from "@mui/joy/CardOverflow";
-import IconButton from "@mui/joy/IconButton";
-import { Favorite } from "@mui/icons-material";
+import { CardOverflow, IconButton } from "@mui/joy";
+import { Favorite, RefreshSharp, Visibility } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-//REDUX
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
-import { Restaurant } from "../../types/user";
-//OTHERS
-import { serverApi } from "../../../lib/config";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
-  sweetTopSuccessAlert,
 } from "../../../lib/sweetAlert";
-import assert from "assert";
-import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../apiService/memberApiService";
-import { group } from "console";
+import MemberApiService from "../../apiServices/memberApiService";
 import { useHistory } from "react-router-dom";
 
-/****************************
- *      REDUX Selector      *
- ****************************/
-const topRestaurantRetriever = createSelector(
+//Redux
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
+import { Restaurant } from "../../../types/user";
+import { serverApi } from "../../../lib/config";
+
+//** Redux Selector */
+const topRestaurantsRetriever = createSelector(
   retrieveTopRestaurants,
   (topRestaurants) => ({
     topRestaurants,
@@ -39,14 +35,18 @@ const topRestaurantRetriever = createSelector(
 );
 
 export function TopRestaurants() {
-  /** INITIALIZATION   */
+  // Initializations
   const history = useHistory();
-  const { topRestaurants } = useSelector(topRestaurantRetriever);
+  const { topRestaurants } = useSelector(topRestaurantsRetriever);
+  console.log("topRestaurants:", topRestaurants);
   const refs: any = useRef([]);
 
+  console.log("topRestaurants:::", topRestaurants);
+
   /** Handlers */
-  const chosenRestaurantHandler = async (id: string) =>
+  const chosenRestaurantHandler = (id: string) => {
     history.push(`/restaurant/${id}`);
+  };
 
   const targetLikeTop = async (e: any, id: string) => {
     try {
@@ -69,7 +69,7 @@ export function TopRestaurants() {
 
       await sweetTopSmallSuccessAlert("success", 700, false);
     } catch (err: any) {
-      console.log("targetLikeTop, ERROR", err);
+      console.log("targetLikeTop, ERROR:", err);
       sweetErrorHandling(err).then();
     }
   };
@@ -89,10 +89,13 @@ export function TopRestaurants() {
               return (
                 <CssVarsProvider key={ele._id}>
                   <Card
-                    onClick={() => {
-                      chosenRestaurantHandler(ele._id);
+                    onClick={() => chosenRestaurantHandler(ele._id)}
+                    sx={{
+                      minHeight: 430,
+                      minWidth: 325,
+                      mr: "35px",
+                      cursor: "pointer",
                     }}
-                    className="main_card"
                   >
                     <CardCover>
                       <img src={image_path} loading="lazy" alt="" />
@@ -106,8 +109,8 @@ export function TopRestaurants() {
                     <CardContent sx={{ justifyContent: "flex-end" }}>
                       <Typography
                         level="h2"
-                        textColor="#fff"
                         fontSize="lg"
+                        textColor="#fff"
                         mb={1}
                       >
                         {ele.mb_nick}
@@ -116,22 +119,27 @@ export function TopRestaurants() {
                         startDecorator={<LocationOnRoundedIcon />}
                         textColor="neutral.300"
                       >
-                        {ele.mb_address}
+                        Tashkent, Yunusabad 444
+                      </Typography>
+                      <Typography
+                        startDecorator={<CallIcon />}
+                        textColor="neutral.300"
+                      >
+                        {ele.mb_phone}
                       </Typography>
                     </CardContent>
-                    {/*material ui dagi CardOverflow rasm ostida likes comments uchunjoy ajratadi */}
                     <CardOverflow
                       sx={{
                         display: "flex",
                         flexDirection: "row",
                         gap: 1.5,
                         py: 1.5,
-                        px: "var(--Card-padding)",
-                        borderTop: "1px solid rgb(107, 105, 103)",
+                        // px: "var(--Card--padding)",
+                        borderTop: "1px solid",
                       }}
                     >
                       <IconButton
-                        aria-label="Like minimal photography"
+                        aria-label="Add to favorite"
                         size="md"
                         variant="solid"
                         color="neutral"
@@ -142,7 +150,7 @@ export function TopRestaurants() {
                           right: "1rem",
                           bottom: 45,
                           transform: "translateY(50%)",
-                          color: "rgb(0,0,0,.4)",
+                          color: "rgba(0, 0, 0, .4)",
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -152,20 +160,19 @@ export function TopRestaurants() {
                           onClick={(e) => targetLikeTop(e, ele._id)}
                           style={{
                             fill:
-                              ele?.me_liked && ele?.me_liked[0]?.my_favorite //todo: Savol=> my_favorite underfined chiqdi nimaga?
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
                                 ? "red"
                                 : "white",
                           }}
                         />
                       </IconButton>
-
                       <Typography
-                        level="body-sm" //bu yerda ishlmadi soreman
+                        level="body-sm"
                         sx={{
-                          display: "flex",
-                          fontWeight: "md",
+                          fontweight: "md",
                           color: "neutral.300",
                           alignItems: "center",
+                          display: "flex",
                         }}
                       >
                         {ele.mb_views}
@@ -175,8 +182,9 @@ export function TopRestaurants() {
                       </Typography>
                       <Box sx={{ width: 2, bgcolor: "divider" }} />
                       <Typography
+                        level="body-sm"
                         sx={{
-                          fontWeight: "md",
+                          fontweight: "md",
                           color: "neutral.300",
                           alignItems: "center",
                           display: "flex",

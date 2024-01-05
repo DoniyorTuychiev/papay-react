@@ -1,25 +1,24 @@
 import { MonetizationOn } from "@mui/icons-material";
 import { Box, Container, Stack } from "@mui/material";
 import React, { useEffect } from "react";
-
-//REDUX
+// REDUX
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import { Dispatch } from "@reduxjs/toolkit";
+import { Product } from "../../../types/product";
 import { setTrendProducts } from "./slice";
-import { retrieveTrendProducts } from "../../screens/HomePage/selector";
-import { Product } from "../../types/product";
-import ProductApiService from "../../apiService/productApiService";
+import ProductApiService from "../../apiServices/productApiService";
+import { createSelector } from "reselect";
+import { retrieveTrendProducts } from "./selector";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
-/** REDUX SLICE  */
-const actionDispatch = (dispatch: Dispatch) => ({
-  setTrendProducts: (data: Product[]) => dispatch(setTrendProducts(data)),
+// REDUX SLICE
+const actionDispatch = (dispach: Dispatch) => ({
+  setTrendProducts: (data: Product[]) => dispach(setTrendProducts(data)),
 });
 
-/****************************
- *      REDUX Selector      *
- ****************************/
-const trendProductsRetriever = createSelector(
+// REDUX SELECTOR
+const trendProductRetriever = createSelector(
   retrieveTrendProducts,
   (trendProducts) => ({
     trendProducts,
@@ -27,30 +26,40 @@ const trendProductsRetriever = createSelector(
 );
 
 export function BestDishes() {
-  /** INITIALIZATION   */
+  // INITIALIZATION
+  const history = useHistory();
   const { setTrendProducts } = actionDispatch(useDispatch());
-  const { trendProducts } = useSelector(trendProductsRetriever);
+  const { trendProducts } = useSelector(trendProductRetriever);
   useEffect(() => {
     const productService = new ProductApiService();
     productService
-      .getTargetProducts({ order: "product_likes", page: 1, limit: 4 })
+      .getTargetdProducts({ order: "product_likes", page: 1, limit: 4 })
       .then((data) => setTrendProducts(data))
       .catch((err) => console.log(err));
   }, []);
 
+  /** HANDLERS */
+
+  const chosenDishHandler = (id: string) => {
+    history.push(`/restaurant/dish/${id}`);
+  };
+
   return (
     <div className="best_dishes_frame">
       <Container>
-        <Stack flexDirection={"column"} alignItems={"center"}>
-          <Box className="category_title">Trentdagi Ovqatlar</Box>
+        <Stack
+          flexDirection={"column"}
+          alignItems={"center"}
+          sx={{ mt: "71px" }}
+        >
+          <Box className="category_title">Trendagi Ovqatlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
             {trendProducts.map((product: Product) => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
-              console.log("Image:::", image_path);
               const size_volume =
                 product.product_collection === "drink"
-                  ? product.product_volume + " l"
-                  : product.product_size + " size";
+                  ? product.product_volume + "l"
+                  : product.product_size + "size";
               return (
                 <Box className="dish_box">
                   <Stack
@@ -60,8 +69,11 @@ export function BestDishes() {
                     }}
                   >
                     <div className={"dish_sale"}>{size_volume}</div>
-                    <div className={"view_btn"}>
-                      Batavsil Korish
+                    <div
+                      className={"view_btn"}
+                      onClick={() => chosenDishHandler(product._id)}
+                    >
+                      Batafsil ko'rish
                       <img
                         src={"/icons/arrow_right.svg"}
                         style={{ marginLeft: "9px" }}
@@ -74,7 +86,7 @@ export function BestDishes() {
                     </span>
                     <span className={"dish_desc_text"}>
                       <MonetizationOn />
-                      {product.product_price}
+                      11
                     </span>
                   </Stack>
                 </Box>

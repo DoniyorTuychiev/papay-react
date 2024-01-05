@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Basket from "./basket";
 
 export function NavbarRestaurant(props: any) {
   return (
@@ -32,23 +33,23 @@ export function NavbarRestaurant(props: any) {
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/">
-                Bosh Sahifa
-              </NavLink>
+              <NavLink to="/">Bosh Sahifa</NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/restaurant" activeClassName="underline">
-                Oshxona
+                Restaurant
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Orders
+                </NavLink>
+              </Box>
+            ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/community" activeClassName="underline">
-                Jamiyat
+                Community
               </NavLink>
             </Box>
             {props.verifiedMemberData ? (
@@ -60,28 +61,22 @@ export function NavbarRestaurant(props: any) {
             ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
-                Yordam
+                Help
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                //   onClick={handleClick}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src="/icons/shopping-cart.svg" />
-                </Badge>
-              </IconButton>
-            </Box>
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderReBuild={props.setOrderReBuild}
+            />
             {!props.verifiedMemberData ? (
               <Box>
                 <Button
                   variant="contained"
-                  style={{ color: "#FFFFFF", background: "#1976d2" }}
+                  style={{ color: "#ffffff", background: "#1976d2" }}
                   onClick={props.handleLoginOpen}
                 >
                   KIRISH
@@ -94,18 +89,17 @@ export function NavbarRestaurant(props: any) {
                 onClick={props.handleLogOutClick}
               />
             )}
-
+            ;
             <Menu
               anchorEl={props.anchorEl}
               open={props.open}
               onClose={props.handleCloseLogOut}
               onClick={props.handleCloseLogOut}
-              // className="myPaper"
               PaperProps={{
                 elevation: 0,
                 sx: {
                   overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0,32))",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                   mt: 1.5,
                   "& .MuiAvatar-root": {
                     width: 32,

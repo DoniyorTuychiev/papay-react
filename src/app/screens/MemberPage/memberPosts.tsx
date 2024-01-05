@@ -14,16 +14,16 @@ export function MemberPosts(props: any) {
           <Stack className="all_article_box" sx={{ cursor: "pointer" }}>
             <Box
               className={"all_article_img"}
-              sx={{ backgroundImage: `url('/icons/default_user.svg')` }}
+              //   sx={{ backgroundImage: `url('/icons/default_img.svg')` }}
             ></Box>
             <Box className={"all_article_container"}>
               <Box alignItems={"center"} display={"flex"}>
                 <img
-                  src="/icons/default_user.svg"
+                  src="/icons/default_img.svg"
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
-                <span className="all_article_author_user">Mirzabek Kh</span>
+                <span className="all_article_author_user">Doni</span>
               </Box>
               <Box
                 display={"flex"}
@@ -31,7 +31,7 @@ export function MemberPosts(props: any) {
                 sx={{ mt: "15px" }}
               >
                 <span className="all_article_title">Restaurantlarga baho</span>
-                <p className="all_article_desc">Burak Restaurantiga keling</p>
+                <p className="all_article_desc">Burak ajoyib Restaurant</p>
               </Box>
               <Box>
                 <Box
@@ -55,9 +55,9 @@ export function MemberPosts(props: any) {
                       checkedIcon={<Favorite style={{ color: "red" }} />}
                       checked={false}
                     />
-                    <span style={{marginRight: "10px"}}>78</span>
-                    <RemoveRedEyeIcon/>
-                    <span style={{marginLeft: "10px"}}>459</span>
+                    <span style={{ marginRight: "10px" }}>100</span>
+                    <RemoveRedEyeIcon />
+                    <span style={{ marginLeft: "10px" }}>1000</span>
                   </Box>
                 </Box>
               </Box>

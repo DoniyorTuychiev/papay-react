@@ -7,9 +7,9 @@ import { Fab, Stack, TextField } from "@mui/material";
 import styled from "styled-components";
 import LoginIcon from "@mui/icons-material/Login";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
-import assert from "assert";
 import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../apiService/memberApiService";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,11 +35,12 @@ const ModalImg = styled.img`
 `;
 
 export default function AuthenticationModal(props: any) {
+  // INITIALIZATION
   const classes = useStyles();
   let mb_nick: string = "",
     mb_phone: number = 0,
     mb_password: string = "";
-  /**HANDLERS */
+  // HANDLERS
   const handleUsername = (e: any) => {
     mb_nick = e.target.value;
   };
@@ -50,7 +51,7 @@ export default function AuthenticationModal(props: any) {
     mb_password = e.target.value;
   };
 
-  const handleSignUpRequest = async () => {
+  const handleSignupRequest = async () => {
     try {
       const is_fulfilled = mb_nick != "" && mb_password != "" && mb_phone != 0;
       assert.ok(is_fulfilled, Definer.input_err1);
@@ -68,6 +69,7 @@ export default function AuthenticationModal(props: any) {
       window.location.reload();
     } catch (err) {
       console.log(err);
+      props.handleLoginClose();
       sweetErrorHandling(err).then();
     }
   };
@@ -97,7 +99,7 @@ export default function AuthenticationModal(props: any) {
   return (
     <div>
       {/*@ts-ignore*/}
-      <Modal //SignUpModel
+      <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
@@ -139,7 +141,7 @@ export default function AuthenticationModal(props: any) {
                 variant="outlined"
               />
               <Fab
-                onClick={handleSignUpRequest}
+                onClick={handleSignupRequest}
                 sx={{ marginTop: "30px", width: "120px" }}
                 variant="extended"
                 color="primary"
@@ -153,12 +155,12 @@ export default function AuthenticationModal(props: any) {
       </Modal>
 
       {/*@ts-ignore*/}
-      <Modal  //LoginModel
+      <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={props.loginOpen}
-        onClose={props.handleLoginClose} //bu login open bolganda  boshqa joylar bosilganda loginni yoqolip qolishi uchun
+        onClose={props.handleLoginClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{

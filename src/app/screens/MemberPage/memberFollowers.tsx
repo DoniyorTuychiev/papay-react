@@ -4,16 +4,16 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 
 const followers = [
-  { mb_nick: "doni ", following: true },
-  { mb_nick: "alisa", following: false },
-  { mb_nick: "sardor", following: true },
+  { mb_nick: "shimomoto", following: true },
+  { mb_nick: "yoganglam", following: false },
+  { mb_nick: "larisa", following: true },
 ];
 
 export function MemberFollowers(props: any) {
   return (
     <Stack>
       {followers.map((follower) => {
-        const image_url = "/icons/default_user_pictures.svg";
+        const image_url = "/community/cute_girl.jpeg";
         return (
           <Box className={"follow_box"}>
             <Avatar src={image_url} sx={{ width: 89, height: 89 }} />
@@ -26,10 +26,11 @@ export function MemberFollowers(props: any) {
                 height: "85%",
               }}
             >
-              <span className="username_text">User</span>
+              <span className="username_text">USER</span>
               <span className="name_text">{follower.mb_nick}</span>
             </div>
-              {props.actions_enabled && (follower.following ? ( 
+            {props.actions_enabled &&
+              (follower.following ? (
                 <Button
                   variant="contained"
                   className="following_already"
@@ -41,7 +42,7 @@ export function MemberFollowers(props: any) {
                 <Button
                   variant="contained"
                   startIcon={
-                    <img src="/auth/lianardo.jpg" style={{ width: "40px", borderRadius: '100px' }} />
+                    <img src="/icons/user.svg" style={{ width: "40px" }} />
                   }
                   className="follow_btn"
                 >
