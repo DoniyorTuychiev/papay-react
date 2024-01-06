@@ -6,12 +6,16 @@ import Favorite from "@mui/icons-material/Favorite";
 import Checkbox from "@mui/material/Checkbox";
 import moment from "moment";
 import { Label } from "@mui/icons-material";
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
 
 export function TargetArticles(props: any) {
   return (
     <Stack>
-      {props.targetBoArticles?.map((article: any, index: string) => {
-        const art_image_url = "/community/default_user.svg";
+      {props.targetBoArticles?.map((article: BoArticle) => {
+        const art_image_url = article?.art_image
+          ? `${serverApi}/${article.art_image}`
+          : "/community/doni.jpg";
         return (
           <Link
             className={"all_article_box"}
@@ -29,16 +33,17 @@ export function TargetArticles(props: any) {
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
-                <span className={"all_article_author_user"}>Doni</span>
+                <span className="all_article_author_user">Doni</span>
+                <span className="all_article_author_user">{article?.member_data.mb_nick}</span>
               </Box>
               <Box
                 display={"flex"}
                 flexDirection={"column"}
                 sx={{ mt: "15px" }}
               >
-                <span className={"all_article_title"}>evaluation</span>
+                <span className="all_article_title">{article?.bo_id}</span>
                 <p className={"all_article_desc"}>
-                  Texas De Brazil zo'r restaurant
+                {article?.art_subject}
                 </p>
               </Box>
               <Box
@@ -52,6 +57,7 @@ export function TargetArticles(props: any) {
                   justifyContent={"space-between"}
                   marginRight={"14px"}
                 >
+                  <div className="article_date">{moment().format("YY-MM-DD HH:mm")}</div>
                   <div className="evaluation_box">
                     <div
                       style={{
@@ -60,17 +66,12 @@ export function TargetArticles(props: any) {
                         marginRight: "20px",
                       }}
                     >
-                      <div
-                        style={{ marginRight: "50px" }}
-                        className="article_date"
-                      >
-                        22-05-15 02:08
-                      </div>
                       <Checkbox
                         {...Label}
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite style={{ color: "red" }} />}
-                        checked={true}
+                        id={article?._id}
+                        checked={false}
                       />
 
                       <span style={{ marginRight: "10px" }}>15</span>
