@@ -54,7 +54,7 @@ export function OrdersPage(props: any) {
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
     console.log("newValue", newValue);
-    setValue(newValue);
+    setValue(newValue); 
   };
   return (
     <div className={"order_page"}>
