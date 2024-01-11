@@ -8,8 +8,32 @@ import moment from "moment";
 import { Label } from "@mui/icons-material";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
-
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import assert  from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
 export function TargetArticles(props: any) {
+  const { setArticlesReBuild } = props;
+
+    // HNADLERS
+    const targetLikeHandler = async (e: any) =>  {
+        try {
+            assert.ok(localStorage.getItem('member_data'), Definer.auth_err1);
+
+            const memberService = new MemberApiService();
+            const like_result = await memberService.memberLikeTarget({
+                like_ref_id: e.target.id,
+                group_type: "community"
+            });
+            assert.ok(like_result, Definer.general_err1);
+            await sweetTopSmallSuccessAlert("success", 700, false);
+            props.setArticlesReBuild(new Date());
+
+        } catch (err: any) {
+            console.log(err);
+            sweetErrorHandling(err).then();
+        }
+    }
   return (
     <Stack>
       {props.targetBoArticles?.map((article: BoArticle) => {

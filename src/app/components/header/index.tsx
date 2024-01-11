@@ -60,7 +60,7 @@ export function NavbarHome(props: any) {
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
-                  Sahifam
+                  My Page
                 </NavLink>
               </Box>
             ) : null}
