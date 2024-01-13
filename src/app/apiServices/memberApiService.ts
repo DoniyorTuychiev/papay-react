@@ -35,6 +35,8 @@ class MemberApiService {
       const result = await axios.post(this.path + "/signup", signup_data, {
         withCredentials: true,
       });
+      console.log("result:::", result);
+      
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
       console.log("state:", result.data.state);
