@@ -76,7 +76,7 @@ export function BestDishes() {
                       Batafsil ko'rish
                       <img
                         src={"/icons/arrow_right.svg"}
-                        style={{ marginLeft: "9px" }}
+                        style={{ marginLeft: "9px" }} alt=""
                       />
                     </div>
                   </Stack>

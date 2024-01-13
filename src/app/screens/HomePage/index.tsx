@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Container } from "@mui/material";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./toprestaurants";
 import { BestRestaurants } from "./bestrestaurants";
@@ -10,9 +9,8 @@ import { Recommendations } from "./recommendation";
 import "../../../css/home.css";
 
 // REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
 import {
   setTopRestaurants,
   setBestRestaurants,
