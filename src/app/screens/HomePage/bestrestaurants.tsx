@@ -26,7 +26,7 @@ import { useHistory } from "react-router-dom";
 //Redux
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveBestRestaurants } from "../../screens/HomePage/selector";
+import { retrieveBestRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
 

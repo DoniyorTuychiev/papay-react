@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Container } from "@mui/material";
 import { Statistics } from "./statistics";
-import { TopRestaurants } from "./topRestaurants";
+import { TopRestaurants } from "./toprestaurants";
 import { BestRestaurants } from "./bestRestaurants";
 import { BestDishes } from "./bestDishes";
 import { Advertisements } from "./advertisements";
