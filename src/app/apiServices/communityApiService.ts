@@ -1,7 +1,7 @@
 import axios from "axios";
-import { serverApi } from "../../lib/config";
 import assert from "assert";
 import { Definer } from "../../lib/Definer";
+import { serverApi } from "../../lib/config";
 import { BoArticle, SearchArticlesObj } from "../../types/boArticle";
 
 class CommunityApiService {
@@ -15,16 +15,18 @@ class CommunityApiService {
     try {
       let url = `/community/target?bo_id=${data.bo_id}&page=${data.page}&limit=${data.limit}`;
       if (data.order) url += `&order=${data.order}`;
-
+      
       const result = await axios.get(this.path + url, {
         withCredentials: true,
       });
+      console.log("Result:::", result);
 
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state", result.data.state);
 
       const articles: BoArticle[] = result.data.data;
+      console.log("articles:::", articles);
       return articles;
     } catch (err: any) {
       console.log(`ERROR ::: getTargetArticles ${err.message}`);

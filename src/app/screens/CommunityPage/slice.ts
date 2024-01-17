@@ -1,4 +1,6 @@
+// Redux Toolkit Import
 import { createSlice } from "@reduxjs/toolkit";
+// Type Import
 import { CommunityPageState } from "../../../types/screen";
 
 const initialState: CommunityPageState = {
@@ -15,7 +17,9 @@ const communityPageSlice = createSlice({
   },
 });
 
-export const { setTargetBoArticles } = communityPageSlice.actions;
+export const { 
+  setTargetBoArticles 
+} = communityPageSlice.actions;
 
 const CommunityPageReducer = communityPageSlice.reducer;
 export default CommunityPageReducer;

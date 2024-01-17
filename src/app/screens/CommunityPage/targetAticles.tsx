@@ -8,38 +8,34 @@ import moment from "moment";
 import { Label } from "@mui/icons-material";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
-import assert  from "assert";
-import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../apiServices/memberApiService";
 export function TargetArticles(props: any) {
-  const { setArticlesReBuild } = props;
+  // const { setArticlesReBuild } = props;
 
-    // HNADLERS
-    const targetLikeHandler = async (e: any) =>  {
-        try {
-            assert.ok(localStorage.getItem('member_data'), Definer.auth_err1);
+    // HANDLERS
+    // const targetLikeHandler = async (e: any) =>  {
+    //     try {
+    //         assert.ok(localStorage.getItem('member_data'), Definer.auth_err1);
 
-            const memberService = new MemberApiService();
-            const like_result = await memberService.memberLikeTarget({
-                like_ref_id: e.target.id,
-                group_type: "community"
-            });
-            assert.ok(like_result, Definer.general_err1);
-            await sweetTopSmallSuccessAlert("success", 700, false);
-            props.setArticlesReBuild(new Date());
+    //         const memberService = new MemberApiService();
+    //         const like_result = await memberService.memberLikeTarget({
+    //             like_ref_id: e.target.id,
+    //             group_type: "community"
+    //         });
+    //         assert.ok(like_result, Definer.general_err1);
+    //         await sweetTopSmallSuccessAlert("success", 700, false);
+    //         props.setArticlesReBuild(new Date());
 
-        } catch (err: any) {
-            console.log(err);
-            sweetErrorHandling(err).then();
-        }
-    }
+    //     } catch (err: any) {
+    //         console.log(err);
+    //         sweetErrorHandling(err).then();
+    //     }
+    // }
   return (
     <Stack>
       {props.targetBoArticles?.map((article: BoArticle) => {
         const art_image_url = article?.art_image
           ? `${serverApi}/${article.art_image}`
-          : "/community/doni.jpg";
+          : "/community/default_user.png";
         return (
           <Link
             className={"all_article_box"}
@@ -55,10 +51,10 @@ export function TargetArticles(props: any) {
                 <img
                   src={"/auth/default_user.svg"}
                   width={"35px"}
-                  style={{ borderRadius: "50%", backgroundSize: "cover" }}
+                  style={{ borderRadius: "50%", backgroundSize: "cover" }} 
+                  alt=""
                 />
-                <span className="all_article_author_user">Doni</span>
-                <span className="all_article_author_user">{article?.member_data.mb_nick}</span>
+                <span className="all_article_author_user">{article?.member_data?.mb_nick}</span>
               </Box>
               <Box
                 display={"flex"}
@@ -98,10 +94,10 @@ export function TargetArticles(props: any) {
                         checked={false}
                       />
 
-                      <span style={{ marginRight: "10px" }}>15</span>
+                      <span style={{ marginRight: "10px" }}>{article?.art_likes}</span>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <RemoveRedEyeIcon sx={{ mr: "10px" }} />
-                        <span>100</span>
+                        <span>{article?.art_views}</span>
                       </div>
                     </div>
                   </div>

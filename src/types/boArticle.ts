@@ -18,8 +18,8 @@ export interface BoArticle {
 }
 
 export interface SearchArticlesObj {
-   page: number
-   limit: number
-   bo_id: string
-   order?: number | null
+   page: number;
+   limit: number;
+   bo_id: string;
+   order?: number | null;
 }

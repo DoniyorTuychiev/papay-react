@@ -4,6 +4,7 @@ import { RestaurantPage } from ".";
 
 
 const selecetRestaurantPage = (state: AppRootState) => state.restaurantPage;
+
 export const retrieveTargetRestaurants = createSelector(
     selecetRestaurantPage,
     (RestaurantPage) => RestaurantPage.targetRestaurants

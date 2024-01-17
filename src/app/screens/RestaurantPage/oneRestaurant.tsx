@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';      
 import { Container, Button, Box, Stack } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -450,7 +450,7 @@ export function OneRestaurant(props: any) {
                 <Box className={"category_title"}>Oshxona Manzili</Box>
                 <iframe
                     style={{ marginTop: "60px" }}
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.363734762081!2d69.2267250514616!3d41.322703307863044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b9a0a33281d%3A0x9c5015eab678e435!2z0KDQsNC50YXQvtC9!5e0!3m2!1sko!2skr!4v1655461169573!5m2!1sko!2skr"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23987.728105588292!2d69.2074757743164!3d41.27696119999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef57107ea0dc1%3A0x4931486d0e2aae6b!2sBasri%20Baba!5e0!3m2!1sen!2skr!4v1705241861229!5m2!1sen!2skr"
                     width="1320"
                     height="500"
                 referrerPolicy="no-referrer-when-downgrade">

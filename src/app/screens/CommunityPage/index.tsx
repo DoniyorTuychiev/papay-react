@@ -10,7 +10,6 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowBackForward from "@mui/icons-material/ArrowForward";
 import { ArrowForward } from "@mui/icons-material";
 import { BoArticle, SearchArticlesObj } from "../../../types/boArticle";
 import CommunityApiService from "../../apiServices/communityApiService";
@@ -18,20 +17,9 @@ import CommunityApiService from "../../apiServices/communityApiService";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createSelector } from "reselect";
-import { Restaurant } from "../../../types/user";
-import { serverApi } from "../../../lib/config";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../../lib/sweetAlert";
-import assert from "assert";
-import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../apiServices/memberApiService";
-import { useHistory } from "react-router-dom";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTargetBoArticles } from "./slice";
 import { retriveTargetBoArticles } from "./selector";
-const targetAticles = [1, 2, 3, 4, 5];
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
   setTargetBoArticles: (data: BoArticle[]) =>
@@ -49,9 +37,14 @@ export function CommunityPage(props: any) {
   // INITIALIZATION
   const { setTargetBoArticles } = actionDispatch(useDispatch());
   const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
-  const [Value, setValue] = React.useState("1");
+  
+  const [value, setValue] = React.useState("1");
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
-    { bo_id: "all", page: 1, limit: 1 }
+    { 
+      bo_id: "all", 
+      page: 1, 
+      limit: 5 
+    }
   );
 
   useEffect(() => {
@@ -99,7 +92,7 @@ export function CommunityPage(props: any) {
               inputMode={"text"}
               style={{ border: "1px solid #fff" }}
             >
-              <TabContext value={Value}>
+              <TabContext value={value}>
                 <Box className={"article_tabs"}>
                   <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                     <TabList
@@ -118,16 +111,18 @@ export function CommunityPage(props: any) {
 
                 <Box className={"aeticle_main"}>
                   <TabPanel value={"1"}>
-                    <TargetArticles targetBoArticles={targetAticles} />
+                    <TargetArticles targetBoArticles={targetBoArticles } 
+                    test={"Maqolalarim"}/>
                   </TabPanel>
                   <TabPanel value={"2"}>
-                    <TargetArticles targetBoArticles={targetAticles} />
+                    <TargetArticles targetBoArticles={targetBoArticles } 
+                    test={"Mashxurlar"}/>
                   </TabPanel>
                   <TabPanel value={"3"}>
-                    <TargetArticles targetBoArticles={targetAticles} />
+                    <TargetArticles targetBoArticles={targetBoArticles } />
                   </TabPanel>
                   <TabPanel value={"4"}>
-                    <TargetArticles targetBoArticles={targetAticles} />
+                    <TargetArticles targetBoArticles={targetBoArticles } />
                   </TabPanel>
                 </Box>
 
