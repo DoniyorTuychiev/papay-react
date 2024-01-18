@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { VisitOtherPage } from "./VisitOtherPage";
@@ -17,7 +16,6 @@ export function MemberPage() {
           <Route path={`${member.path}`}>
             <VisitMyPage />
           </Route>
-          
         </Switch>
       </div>
     );
