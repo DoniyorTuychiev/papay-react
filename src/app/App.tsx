@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
@@ -210,7 +210,7 @@ function App() {
           />
         </Route>
         <Route path="/member-page">
-          <MemberPage />
+          <MemberPage verifiedMemberData={verifiedMemberData} />
         </Route>
         <Route path="/help">
           <HelpPage />

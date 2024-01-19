@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -19,14 +19,66 @@ import { MemberPosts } from "./memberPosts";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
 import { MySettings } from "./mySettings";
-import TViewer  from '../../components/tuiEditor/TViewer'; 
+import TViewer from "../../components/tuiEditor/TViewer";
 import { TuiEditor } from "../../components/tuiEditor/TuiEditor";
+import { Member } from "../../../types/user";
+import { BoArticle } from "../../../types/boArticle";
+
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle,
+} from "./slice";
+import {
+  retriveChosenMember,
+  retriveChosenMemberBoArticles,
+  retriveChosenSingleBoArticle,
+} from "./selector";
 
 
+// REDUX SLICE
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispach(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispach(setChosenSingleBoArticle(data)),
+});
 
-
+// REDUX SELECTOR
+const chosenMemberRetriever = createSelector(
+  retriveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticlesRetriever = createSelector(
+  retriveChosenMember,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriever = createSelector(
+  retriveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
 export function VisitMyPage(props: any) {
   //INITIALIZIATION
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticlesRetriever);
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = useState("1");
 
   // HANDLERS
@@ -44,7 +96,7 @@ export function VisitMyPage(props: any) {
                 <TabPanel value="1">
                   <Box className="menu_name">Mening Maqolalarim</Box>
                   <Box className="menu_content">
-                    <MemberPosts/>
+                    <MemberPosts />
                     <Stack
                       sx={{ my: "40px" }}
                       direction={"row"}
@@ -87,18 +139,20 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Maqola Yozish</Box>
                   <Box className={"write_content"}></Box>
-                  <TuiEditor/>
+                  <TuiEditor />
                 </TabPanel>
 
                 <TabPanel value={"5"}>
                   <Box className={"menu_name"}>Tanlangan Maqola</Box>
                   <Box className={"menu_content"}></Box>
-                  <TViewer text={`<h3>Hello</h3>`}/>
+                  <TViewer text={`<h3>Hello</h3>`} />
                 </TabPanel>
 
                 <TabPanel value={"6"}>
                   <Box className={"menu_name"}>Ma'lumotlarni O'zgartirish</Box>
-                  <Box className={"menu_content"}><MySettings /></Box>
+                  <Box className={"menu_content"}>
+                    <MySettings />
+                  </Box>
                 </TabPanel>
               </Box>
             </Stack>
@@ -117,6 +171,7 @@ export function VisitMyPage(props: any) {
                     <img
                       src="/community/doni.jpg"
                       className="order_user_avatar"
+                      alt=""
                     />
                     <div className="order_user_icon_box">
                       <img src="/icons/user_icon.svg" alt="" />
@@ -170,10 +225,11 @@ export function VisitMyPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"1"}
                     component={() => (
-                      <div className={`menu_box ${value}`}
+                      <div
+                        className={`menu_box ${value}`}
                         onClick={() => setValue("1")}
                       >
-                        <img src="/icons/pencil.svg"  alt="" />
+                        <img src="/icons/pencil.svg" alt="" />
                         <span>Maqolalarim</span>
                       </div>
                     )}
@@ -182,24 +238,26 @@ export function VisitMyPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"2"}
                     component={() => (
-                      <div className={`menu_box ${value}`}
+                      <div
+                        className={`menu_box ${value}`}
                         onClick={() => setValue("2")}
                       >
-                            <img src="/icons/group.svg"  alt="" />
-                            <span>Follower</span>
-                        </div>
+                        <img src="/icons/group.svg" alt="" />
+                        <span>Follower</span>
+                      </div>
                     )}
                   />
-                   <Tab
+                  <Tab
                     style={{ flexDirection: "column" }}
                     value={"3"}
                     component={() => (
-                      <div className={`menu_box ${value}`}
+                      <div
+                        className={`menu_box ${value}`}
                         onClick={() => setValue("3")}
                       >
-                            <img src="/icons/user.svg" alt="" />
-                            <span>Following</span>
-                        </div>
+                        <img src="/icons/user.svg" alt="" />
+                        <span>Following</span>
+                      </div>
                     )}
                   />
                 </TabList>
