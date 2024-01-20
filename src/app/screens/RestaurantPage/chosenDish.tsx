@@ -133,7 +133,7 @@ export function ChosenDish(props: any) {
                 <SwiperSlide>
                   <img
                     src={image_path}
-                    style={{ width: "100%", height: "100%" }}
+                    style={{ width: "100%", height: "100%" }} alt=""
                   />
                 </SwiperSlide>
               );
@@ -152,7 +152,7 @@ export function ChosenDish(props: any) {
               const image_path = `${serverApi}/${ele}`;
               return (
                 <SwiperSlide style={{ background: "#0b0e11" }}>
-                  <img src={image_path} />
+                  <img src={image_path} alt=""/>
                 </SwiperSlide>
               );
             })}

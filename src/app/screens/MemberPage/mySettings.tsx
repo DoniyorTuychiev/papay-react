@@ -13,6 +13,7 @@ export function MySettings(props: any) {
           style={{ borderRadius: "50%" }}
           width={"100px"}
           height={"100px"}
+          alt=""
         />
         <div className="media_change_box">
           <span>Rasm Yuklash</span>

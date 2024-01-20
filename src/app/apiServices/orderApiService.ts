@@ -18,7 +18,7 @@ class OrderApiService {
           withCredentials: true,
         });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
       const order: any = result.data.data;
@@ -37,7 +37,7 @@ class OrderApiService {
           withCredentials: true,
         });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
       const orders: any = result.data.data;
@@ -49,14 +49,14 @@ class OrderApiService {
     }
   }
 
-  async updateOrderStatus(data: any): Promise<Order> {
+  async updateOrderStatus(data: any) {
     try {
       const url = "/orders/edit",
         result = await axios.post(this.path + url, data, {
           withCredentials: true,
         });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
       const order: any = result.data.data;

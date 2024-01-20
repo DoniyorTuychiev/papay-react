@@ -12,13 +12,13 @@ class MemberApiService {
     this.path = serverApi;
   }
 
-  public async loginRequest(login_data: any) {
+  public async loginRequest(login_data: any): Promise<Member> {
     try {
       const result = await axios.post(this.path + "/login", login_data, {
         withCredentials: true,
       });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
       const member: Member = result.data.data;
@@ -30,13 +30,13 @@ class MemberApiService {
     }
   }
 
-  public async signupRequest(signup_data: any) {
+  public async signupRequest(signup_data: any): Promise<Member> {
     try {
       const result = await axios.post(this.path + "/signup", signup_data, {
         withCredentials: true,
       });
       console.log("result:::", result);
-      
+
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
       console.log("state:", result.data.state);
@@ -56,11 +56,11 @@ class MemberApiService {
         withCredentials: true,
       });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
       localStorage.removeItem("member_data");
       const logout_result = result.data.state;
-      return logout_result == "success";
+      return logout_result === "success";
     } catch (err: any) {
       console.log(`ERROR ::: LogOutRequest ${err.message}`);
       throw err;
@@ -74,13 +74,32 @@ class MemberApiService {
           withCredentials: true,
         });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
       const like_result: MemberLiken = result.data.data;
       return like_result;
     } catch (err: any) {
       console.log(`ERROR ::: memberLikeTarget ${err.message}`);
+      throw err;
+    }
+  }
+  public async getChosenMember(id: string) {
+    try {
+      const url = `/member/${id}`,
+        result = await axios.post(this.path + url, {
+          withCredentials: true,
+        });
+        console.log("888888", result.data.state);
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+      console.log("state:", result.data.state);
+
+      const member: Member = result.data.data;
+      return member;
+    } catch (err: any) {
+      console.log(`ERROR ::: getChosenMember ${err.message}`);
       throw err;
     }
   }

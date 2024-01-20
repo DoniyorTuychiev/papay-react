@@ -24,7 +24,7 @@ export function NavbarOthers(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            <img src="/icons/papay.svg" />
+            <img src="/icons/papay.svg" alt=""/>
           </Box>
           <Stack
             flexDirection={"row"}
@@ -90,6 +90,7 @@ export function NavbarOthers(props: any) {
                 style={{ width: "48px", height: "48px", borderRadius: "24px" }}
                 src={props.verifiedMemberData.mb_image}
                 onClick={props.handleLogOutClick}
+                alt=""
               />
             )}
             <Menu

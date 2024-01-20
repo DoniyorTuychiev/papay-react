@@ -220,19 +220,20 @@ export function VisitOtherPage(props: any) {
                     <img
                       className={"order_user_avatar"}
                       src={"/community/cute_girl.jpeg"}
+                      alt=""
                     />
                     <div className={"order_user_icon_box"}>
-                      <img src="/icons/user_icon.svg" />
+                      <img src="/icons/user_icon.svg" alt="" />
                     </div>
                   </div>
                   <span className={"order_user_name"}>Cristina</span>
                   <span className={"order_user_prof"}>User</span>
                 </Box>
                 <div className={"user_media_box"}>
-                  <img src="/icons/facebook.svg" />
-                  <img src="/icons/instagram.svg" />
-                  <img src="/icons/telegram.svg" />
-                  <img src="/icons/youtube.svg" />
+                  <img src="/icons/facebook.svg" alt="" />
+                  <img src="/icons/instagram.svg" alt="" />
+                  <img src="/icons/telegram.svg" alt="" />
+                  <img src="/icons/youtube.svg" alt="" />
                 </div>
                 <Box className={"user_media_box"}>
                   <p className="follows">Followers: 2</p>
@@ -276,7 +277,7 @@ export function VisitOtherPage(props: any) {
                         className={`menu_box ${value}`}
                         onClick={() => setValue("1")}
                       >
-                        <img src="/icons/pencil.svg" />
+                        <img src="/icons/pencil.svg" alt=""/>
                         <span>Maqolalarim</span>
                       </div>
                     )}
@@ -290,7 +291,7 @@ export function VisitOtherPage(props: any) {
                         className={`menu_box ${value}`}
                         onClick={() => setValue("2")}
                       >
-                        <img src="/icons/group.svg" />
+                        <img src="/icons/group.svg" alt="" />
                         <span>Followers</span>
                       </div>
                     )}
@@ -304,7 +305,7 @@ export function VisitOtherPage(props: any) {
                         className={`menu_box ${value}`}
                         onClick={() => setValue("3")}
                       >
-                        <img src="/icons/user.svg" />
+                        <img src="/icons/user.svg" alt="" />
                         <span>Following</span>
                       </div>
                     )}

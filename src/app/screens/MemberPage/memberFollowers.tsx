@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setMemberFollowers } from "./slice";
-import { retriveMemberFollowers } from "./selector";
+import { retrieveMemberFollowers } from "./selector";
 import { Follower } from "../../../types/follow";
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
@@ -16,7 +16,7 @@ const actionDispatch = (dispach: Dispatch) => ({
 
 // REDUX SELECTOR
 const memberFollowersRetriever = createSelector(
-  retriveMemberFollowers,
+  retrieveMemberFollowers,
   (memberFollowers) => ({
     memberFollowers,
   })
@@ -33,6 +33,13 @@ export function MemberFollowers(props: any) {
   const { setMemberFollowers } = actionDispatch(useDispatch());
   const { memberFollowers } = useSelector(memberFollowersRetriever);
 
+  //setMemberFollowers
+
+  /** HANDLERS */
+
+  //subscribeHandler
+
+  //
   return (
     <Stack>
       {followers.map((follower) => {

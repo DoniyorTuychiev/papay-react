@@ -4,23 +4,23 @@ import { retriveTargetBoArticles } from "../CommunityPage/selector";
 
 const selectMemberPage = (state: AppRootState)=> state.memberPage;
 
-export const retriveChosenMember = createSelector(
+export const retrieveChosenMember = createSelector(
     selectMemberPage,
     (MemberPage)=> MemberPage.chosenMember
 );
-export const retriveChosenMemberBoArticles = createSelector(
+export const retrieveChosenMemberBoArticles = createSelector(
     selectMemberPage,
     (MemberPage)=> MemberPage.chosenMemberBoArticles
 );
-export const retriveChosenSingleBoArticle = createSelector(
+export const retrieveChosenSingleBoArticle = createSelector(
     selectMemberPage,
     (MemberPage)=> MemberPage.chosenSingleBoArticle
 );
-export const retriveMemberFollowers = createSelector(
+export const retrieveMemberFollowers = createSelector(
     selectMemberPage,
     (MemberPage)=> MemberPage.memberFollowers
 );
-export const retriveMemberFollowings = createSelector(
+export const retrieveMemberFollowings = createSelector(
     selectMemberPage,
     (MemberPage)=> MemberPage.memberFollowings
 );

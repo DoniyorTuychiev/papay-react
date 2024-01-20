@@ -210,7 +210,7 @@ export function OneRestaurant(props: any) {
                     key={ele._id}
                     className="restaurant_avatars"
                   >
-                    <img src={image_path} />
+                    <img src={image_path} alt=''/>
                     <span>{ele.mb_nick}</span>
                   </SwiperSlide>
                 );
@@ -326,7 +326,7 @@ export function OneRestaurant(props: any) {
                                         }}>
                                         <img
                                             src={"/icons/shopping-cart.svg"}
-                                            style={{ display: "flex" }}
+                                            style={{ display: "flex" }} alt=''
                                         />
                                     </Button>
                                     <Button
@@ -381,7 +381,7 @@ export function OneRestaurant(props: any) {
                                 <Box display={"flex"} justifyContent={"center"}>
                                     <img
                                         src={"/community/cute_girl.jpeg"}
-                                        className={"review_img"}
+                                        className={"review_img"} alt=''
                                     />
                                 </Box>
                                 <span className={"review_name"}>Rayhona Asadova</span>
@@ -453,7 +453,7 @@ export function OneRestaurant(props: any) {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23987.728105588292!2d69.2074757743164!3d41.27696119999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef57107ea0dc1%3A0x4931486d0e2aae6b!2sBasri%20Baba!5e0!3m2!1sen!2skr!4v1705241861229!5m2!1sen!2skr"
                     width="1320"
                     height="500"
-                referrerPolicy="no-referrer-when-downgrade">
+                referrerPolicy="no-referrer-when-downgrade" >
                 </iframe>
 
             </Stack>
@@ -461,6 +461,3 @@ export function OneRestaurant(props: any) {
     </div>
 }
 
-function setProductRebuild(arg0: Date) {
-    throw new Error('Function not implemented.');
-}

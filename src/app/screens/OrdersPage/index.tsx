@@ -94,12 +94,12 @@ export function OrdersPage(props: any) {
               <div className={"order_user_img"}>
                 <img
                   className="order_user_image"
-                  src={verifiedMemberData?.mb_image}
+                  src={verifiedMemberData?.mb_image} alt=""
                 />
                 <div className={"order_user_icon_box"}>
                   <img
                     src={"/icons/user_icon.svg"}
-                    className={"order_user_prof_img"}
+                    className={"order_user_prof_img"} alt=""
                   />
                 </div>
               </div>
@@ -158,10 +158,10 @@ export function OrdersPage(props: any) {
               className={"card_input"}
             />
             <div className={"cards_box"}>
-              <img src={"/icons/western_card.svg"} />
-              <img src={"/icons/master_card.svg"} />
-              <img src={"/icons/paypal_card.svg"} />
-              <img src={"/icons/visa_card.svg"} />
+              <img src={"/icons/western_card.svg"} alt=""/>
+              <img src={"/icons/master_card.svg"} alt=""/>
+              <img src={"/icons/paypal_card.svg"} alt=""/>
+              <img src={"/icons/visa_card.svg"} alt=""/>
             </div>
           </Box>
         </Stack>

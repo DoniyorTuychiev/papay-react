@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
-  Badge,
   Box,
   Button,
   Container,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -27,7 +25,7 @@ export function NavbarHome(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            <img src="/icons/papay.svg" />
+            <img src="/icons/papay.svg" alt=""/>
           </Box>
           <Stack
             flexDirection={"row"}
@@ -94,7 +92,8 @@ export function NavbarHome(props: any) {
               <img
                 style={{ width: "48px", height: "48px", borderRadius: "24px" }}
                 src={props.verifiedMemberData.mb_image}
-                onClick={props.handleLogOutClick}
+                onClick={props.handleLogOutClick} 
+                alt=""
               />
             )}
             <Menu
@@ -147,7 +146,7 @@ export function NavbarHome(props: any) {
             sx={{ marginTop: "86px", marginLeft: "24px" }}
           >
             <Box>
-              <img src="/icons/welcomes.svg" />
+              <img src="/icons/welcomes.svg" alt=""/>
             </Box>
             <Box className="define_restaurat">
               The Authentic Restaurant & Cafe
