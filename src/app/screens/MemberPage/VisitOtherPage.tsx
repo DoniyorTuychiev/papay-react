@@ -12,66 +12,10 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
 import TViewer from "../../components/tuiEditor/TViewer";
-/*
-//REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { Member } from "../../../types/user";
-import { BoArticle } from "../../../types/boArticle";
 
-import { createSelector } from "reselect";
-import { Dispatch } from "@reduxjs/toolkit";
-import {
-  setChosenMember,
-  setChosenMemberBoArticles,
-  setChosenSingleBoArticle,
-} from "./slice";
-import {
-  retriveChosenMember,
-  retriveChosenMemberBoArticles,
-  retriveChosenSingleBoArticle,
-} from "./selector";
-
-
-// // REDUX SLICE
-const actionDispatch = (dispach: Dispatch) => ({
-  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
-  setChosenMemberBoArticles: (data: BoArticle[]) =>
-    dispach(setChosenMemberBoArticles(data)),
-  setChosenSingleBoArticle: (data: BoArticle) =>
-    dispach(setChosenSingleBoArticle(data)),
-});
-
-// REDUX SELECTOR
-const chosenMemberRetriever = createSelector(
-  retriveChosenMember,
-  (chosenMember) => ({
-    chosenMember,
-  })
-);
-const chosenMemberBoArticlesRetriever = createSelector(
-  retriveChosenMember,
-  (chosenMemberBoArticles) => ({
-    chosenMemberBoArticles,
-  })
-);
-const chosenSingleBoArticleRetriever = createSelector(
-  retriveChosenSingleBoArticle,
-  (chosenSingleBoArticle) => ({
-    chosenSingleBoArticle,
-  })
-);
-*/
 
 export function VisitOtherPage(props: any) {
-  //INITIALIZIATION
-  // const {
-  //   setChosenMember,
-  //   setChosenMemberBoArticles,
-  //   setChosenSingleBoArticle,
-  // } = actionDispatch(useDispatch());
-  // const { chosenMember } = useSelector(chosenMemberRetriever);
-  // const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticlesRetriever);
-  // const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
+  
   const [value, setValue] = useState("1");
   /**HANDLERS */
   const handleChange = (event: any, newValue: string) => {
@@ -219,7 +163,7 @@ export function VisitOtherPage(props: any) {
                   <div className={"order_user_img"}>
                     <img
                       className={"order_user_avatar"}
-                      src={"/community/cute_girl.jpeg"}
+                      src={"/community/default_user.png"}
                       alt=""
                     />
                     <div className={"order_user_icon_box"}>

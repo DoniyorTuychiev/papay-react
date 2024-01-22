@@ -3,7 +3,7 @@ import { AppRootState } from "../../../types/screen";
 
 const selectCommunityPage = (state: AppRootState) => state.communityPage;
 
-export const retriveTargetBoArticles = createSelector(
+export const retrieveTargetBoArticles = createSelector(
   selectCommunityPage,
   (CommunityPage) => CommunityPage.targetBoArticles
 );

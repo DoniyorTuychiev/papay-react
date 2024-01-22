@@ -32,7 +32,7 @@ export function CommunityChats() {
             style={{ display: "flex" }}
             sx={{ m: "10px 0px" }}
           >
-            <Avatar alt={"Doni"} src={"/community/cute_girl.jpeg"} />
+            <Avatar alt={"Doni"} src={"/community/default_user.png"} />
             <div className={"msg_left"}>
               (bu boshqalar habari)Hammaga Salom bormisila?
             </div>

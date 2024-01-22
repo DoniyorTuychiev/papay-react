@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTargetBoArticles } from "./slice";
-import { retriveTargetBoArticles } from "./selector";
+import { retrieveTargetBoArticles } from "./selector";
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
   setTargetBoArticles: (data: BoArticle[]) =>
@@ -28,7 +28,7 @@ const actionDispatch = (dispach: Dispatch) => ({
 
 // REDUX SELECTOR
 const targetBoArticlesRetriever = createSelector(
-  retriveTargetBoArticles,
+  retrieveTargetBoArticles,
   (targetBoArticles) => ({
     targetBoArticles,
   })

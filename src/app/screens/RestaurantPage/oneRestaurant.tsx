@@ -380,7 +380,7 @@ export function OneRestaurant(props: any) {
                             <Box className={"review_box"} key={index} >
                                 <Box display={"flex"} justifyContent={"center"}>
                                     <img
-                                        src={"/community/cute_girl.jpeg"}
+                                        src={"/default_user.png"}
                                         className={"review_img"} alt=''
                                     />
                                 </Box>

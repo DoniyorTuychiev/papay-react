@@ -13,7 +13,7 @@ export interface Follower {
   createdAt: Date;
   updateAt: Date;
   subscriber_member_data: Member;
-  my_followed: MeFollowed[] | null;
+  me_followed: MeFollowed[] | null;
 }
 export interface Following {
   _id: string;
@@ -23,3 +23,10 @@ export interface Following {
   updateAt: Date;
   follow_member_data: Member;
 }
+
+export interface FollowSearchObj {
+  page: number;
+  limit: number;
+  mb_id: string;
+}
+

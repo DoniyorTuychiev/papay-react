@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { AppRootState } from "../../../types/screen";
-import { retriveTargetBoArticles } from "../CommunityPage/selector";
+import { retrieveTargetBoArticles } from "../CommunityPage/selector";
 
 const selectMemberPage = (state: AppRootState) => state.memberPage;
 
