@@ -325,6 +325,15 @@
 .my_page .order_info_box .user_media_box {
   margin-top: 10px;
   width: 60%;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.my_page .order_info_box .user_follow_box {
+  margin-top: 10px;
+  width: 60%;
 
   display: flex;
   flex-direction: row;

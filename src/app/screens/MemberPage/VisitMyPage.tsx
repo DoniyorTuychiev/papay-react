@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, IconButton, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
@@ -84,13 +84,19 @@ export function VisitMyPage(props: any) {
     setChosenSingleBoArticle,
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
-  const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticlesRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = useState("1");
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
-    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 5 });
+    useState<SearchMemberArticlesObj>({
+      mb_id: "none",
+      page: 1,
+      limit: 5,
+    });
 
   useEffect(() => {
     if (!localStorage.getItem("member_data")) {
@@ -109,7 +115,12 @@ export function VisitMyPage(props: any) {
       .getChosenMember(verifiedMemberData?._id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, articlesRebuild, followRebuild]);
+  }, [
+    memberArticleSearchObj,
+    articlesRebuild,
+    followRebuild,
+    verifiedMemberData,
+  ]);
 
   // HANDLERS
   const handleChange = (event: any, newValue: string) => {
@@ -264,17 +275,33 @@ export function VisitMyPage(props: any) {
                   </span>
                 </Box>
                 <Box className={"user_media_box"}>
-                  <FacebookIcon />
-                  <InstagramIcon />
-                  <TelegramIcon />
-                  <YouTubeIcon />
+                  <IconButton
+                    href={
+                      "https://www.facebook.com/profile.php?id=100015388206725"
+                    }
+                    target="_blank"
+                  >
+                    <FacebookIcon />
+                  </IconButton>
+                  <IconButton
+                    href={"https://www.instagram.com/doni0101195/"}
+                    target="_blank"
+                  >
+                    <InstagramIcon />
+                  </IconButton>
+                  <IconButton href={"https://telegram.org/"} target="_blank">
+                    <TelegramIcon />
+                  </IconButton>
+                  <IconButton href={"https://www.youtube.com/"} target="_blank">
+                    <YouTubeIcon />
+                  </IconButton>
                 </Box>
-                <Box className={"user_media_box"}>
+                <Box className={"user_follow_box"}>
                   <p className="follows">
                     Followers: {chosenMember?.mb_subscriber_cnt}
                   </p>
                   <p className="follows">
-                    Followings: {chosenMember?.mb_follow_cnt}
+                    Following: {chosenMember?.mb_follow_cnt}
                   </p>
                 </Box>
                 <p className="user_desc">
@@ -333,7 +360,7 @@ export function VisitMyPage(props: any) {
                         onClick={() => setValue("2")}
                       >
                         <img src="/icons/group.svg" alt="" />
-                        <span>Follower</span>
+                        <span>Followers</span>
                       </div>
                     )}
                   />
