@@ -25,6 +25,7 @@ import {
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
   setMemberFollowings: (data: Following[]) =>
@@ -41,11 +42,13 @@ const memberFollowingsRetriever = createSelector(
 
 export function MemberFollowing(props: any) {
   // INITIALIZATION
+  const history = useHistory();
   const { mb_id, followRebuild, setFollowRebuild } = props;
   const { setMemberFollowings } = actionDispatch(useDispatch());
   const { memberFollowings } = useSelector(memberFollowingsRetriever);
   const [followingsSearchObj, setFollowingsSearchObj] =
     useState<FollowSearchObj>({ page: 1, limit: 5, mb_id: mb_id });
+
   useEffect(() => {
     const followService = new FollowApiService();
     followService
@@ -74,6 +77,11 @@ export function MemberFollowing(props: any) {
     followingsSearchObj.page = value;
     setFollowingsSearchObj({ ...followingsSearchObj });
   };
+
+  const visitMemberHandler = (mb_id: string) => {
+    history.push(`/member-page/other?mb_id=${mb_id}`);
+    document.location.reload();
+  };
   return (
     <Stack>
       {memberFollowings.map((following: Following) => {
@@ -82,7 +90,12 @@ export function MemberFollowing(props: any) {
           : "/community/default_user.png";
         return (
           <Box className={"follow_box"}>
-            <Avatar src={image_url} sx={{ width: 89, height: 89 }} />
+            <Avatar
+              src={image_url}
+              sx={{ width: 89, height: 89 }}
+              style={{ cursor: "pointer" }}
+              onClick={() => visitMemberHandler(following?.follow_id)}
+            />
             <div
               style={{
                 width: "400px",
@@ -95,7 +108,11 @@ export function MemberFollowing(props: any) {
               <span className="username_text">
                 {following?.follow_member_data?.mb_type}
               </span>
-              <span className="name_text">
+              <span
+                className="name_text"
+                style={{ cursor: "pointer" }}
+                onClick={() => visitMemberHandler(following?.follow_id)}
+              >
                 {following?.follow_member_data?.mb_nick}
               </span>
             </div>

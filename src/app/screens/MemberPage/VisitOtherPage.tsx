@@ -179,7 +179,6 @@ export function VisitOtherPage(props: any) {
       sweetErrorHandling(err).then();
     }
   };
-
   return (
     <div className={"my_page"}>
       <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
@@ -201,7 +200,7 @@ export function VisitOtherPage(props: any) {
                       alignItems={"center"}
                       justifyContent="center"
                     >
-                      {/* <Box className={"bottom_box"}>
+                      <Box className={"bottom_box"}>
                         <Pagination
                           count={
                             memberArticleSearchObj.page >= 3
@@ -221,7 +220,7 @@ export function VisitOtherPage(props: any) {
                           )}
                           onChange={handlePaginationChange}
                         />
-                      </Box> */}
+                      </Box>
                     </Stack>
                   </Box>
                 </TabPanel>
@@ -252,7 +251,6 @@ export function VisitOtherPage(props: any) {
                   <Box className={"menu_name"}>Tanlangan Maqola</Box>
                   <Box className={"menu_content"}>
                     <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
-                    <MemberFollowers actions_enabled={false} />
                   </Box>
                 </TabPanel>
               </Box>
@@ -271,11 +269,17 @@ export function VisitOtherPage(props: any) {
                   <div className={"order_user_img"}>
                     <img
                       className={"order_user_avatar"}
-                      src={"/community/default_user.png"}
+                      src={
+                        // chosenMember?.mb_image ??
+                        "/community/default_user.png"}
                       alt=""
                     />
                     <div className={"order_user_icon_box"}>
-                      <img src="/icons/user_icon.svg" alt="" />
+                      <img src={
+                          chosenMember?.mb_type === "RESTAURANT"
+                            ? "/icons/default_restaurant.png"
+                            : "/icons/user_icon.svg"
+                        } alt="" />
                     </div>
                   </div>
                   <span className={"order_user_name"}>

@@ -102,7 +102,6 @@ export function VisitMyPage(props: any) {
     if (!localStorage.getItem("member_data")) {
       sweetFailureProvider("Pleas login first", true, true);
     }
-
     const communityService = new CommunityApiService();
     const memberService = new MemberApiService();
     //setChosenMemberBoArticles
@@ -259,7 +258,7 @@ export function VisitMyPage(props: any) {
                     <div className="order_user_icon_box">
                       <img
                         src={
-                          chosenMember?.mb_type === "RESTAURANT"
+                          verifiedMemberData?.mb_type === "RESTAURANT"
                             ? "/icons/default_restaurant.png"
                             : "/icons/user_icon.svg"
                         }

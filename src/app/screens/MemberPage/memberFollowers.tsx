@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Container,
   Pagination,
   PaginationItem,
   Stack,
@@ -25,6 +24,7 @@ import {
 } from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
+import { useHistory } from "react-router-dom";
 
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
@@ -41,6 +41,7 @@ const memberFollowersRetriever = createSelector(
 
 export function MemberFollowers(props: any) {
   // INITIALIZATION
+  const history = useHistory();
   const { mb_id, followRebuild, setFollowRebuild } = props;
   const { setMemberFollowers } = actionDispatch(useDispatch());
   const { memberFollowers } = useSelector(memberFollowersRetriever);
@@ -76,6 +77,12 @@ export function MemberFollowers(props: any) {
     followersSearchObj.page = value;
     setFollowersSearchObj({ ...followersSearchObj });
   };
+
+  const visitMemberHandler = (mb_id: string) => {
+    history.push(`/member-page/other?mb_id=${mb_id}`);
+    document.location.reload();
+  };
+
   return (
     <Stack>
       {memberFollowers.map((follower: Follower) => {
@@ -84,7 +91,12 @@ export function MemberFollowers(props: any) {
           : "/community/default_user.png";
         return (
           <Box className={"follow_box"}>
-            <Avatar src={image_url} sx={{ width: 89, height: 89 }} />
+            <Avatar
+              src={image_url}
+              style={{ cursor: "pointer" }}
+              sx={{ width: 89, height: 89 }}
+              onClick={() => visitMemberHandler(follower.subscriber_id)}
+            />
             <div
               style={{
                 width: "400px",
@@ -97,7 +109,11 @@ export function MemberFollowers(props: any) {
               <span className="username_text">
                 {follower?.subscriber_member_data?.mb_type}
               </span>
-              <span className="name_text">
+              <span
+                className="name_text"
+                style={{cursor:"pointer"}}
+                onClick={() => visitMemberHandler(follower?.subscriber_id)}
+              >
                 {follower?.subscriber_member_data?.mb_nick}
               </span>
             </div>
