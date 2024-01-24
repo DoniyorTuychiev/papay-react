@@ -271,15 +271,19 @@ export function VisitOtherPage(props: any) {
                       className={"order_user_avatar"}
                       src={
                         // chosenMember?.mb_image ??
-                        "/community/default_user.png"}
+                        "/community/default_user.png"
+                      }
                       alt=""
                     />
                     <div className={"order_user_icon_box"}>
-                      <img src={
+                      <img
+                        src={
                           chosenMember?.mb_type === "RESTAURANT"
                             ? "/icons/default_restaurant.png"
                             : "/icons/user_icon.svg"
-                        } alt="" />
+                        }
+                        alt=""
+                      />
                     </div>
                   </div>
                   <span className={"order_user_name"}>
@@ -367,16 +371,20 @@ export function VisitOtherPage(props: any) {
                 </Box>
               </Box>
               <Box className={"my_page_menu"}>
+                {/*@ts-ignore*/}
                 <TabList
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={value}
                   onChange={handleChange}
-                  aria-label="lab API tabs example"
-                  style={{ flexDirection: "column" }}
+                  aria-label="Vertical tabs example"
+                  sx={{ borderRight: 1, borderColor: "divider", width: "95%" }}
                 >
                   <Tab
                     value={"1"}
                     component={() => (
                       <div
-                        className={`menu_box ${value}`}
+                        className={`menu_box `}
                         onClick={() => setValue("1")}
                       >
                         <img src="/icons/pencil.svg" alt="" />
@@ -390,7 +398,7 @@ export function VisitOtherPage(props: any) {
                     value={"1"}
                     component={(e: any) => (
                       <div
-                        className={`menu_box ${e}`}
+                        className={`menu_box`}
                         onClick={() => setValue("2")}
                       >
                         <img src="/icons/group.svg" alt="" />
@@ -404,7 +412,7 @@ export function VisitOtherPage(props: any) {
                     value={"1"}
                     component={() => (
                       <div
-                        className={`menu_box ${value}`}
+                        className={`menu_box`}
                         onClick={() => setValue("3")}
                       >
                         <img src="/icons/user.svg" alt="" />

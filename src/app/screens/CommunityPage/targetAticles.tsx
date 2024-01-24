@@ -5,7 +5,6 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Checkbox from "@mui/material/Checkbox";
 import moment from "moment";
-import { Label } from "@mui/icons-material";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
 import {
@@ -43,7 +42,7 @@ export function TargetArticles(props: any) {
       {props.targetBoArticles?.map((article: BoArticle) => {
         const art_image_url = article?.art_image
           ? `${serverApi}/${article.art_image}`
-          : "/community/default_user.png";
+          : "/community/default_article.jpg";
         return (
           <Link
             className={"all_article_box"}
@@ -57,7 +56,10 @@ export function TargetArticles(props: any) {
             <Box className={"all_article_container"}>
               <Box alignItems={"center"} display={"flex"}>
                 <img
-                  src={"/auth/default_user.svg"}
+                  src={
+                    // article?.member_data?.mb_image ?? 
+                    "/auth/default_user.svg"
+                  }
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                   alt=""

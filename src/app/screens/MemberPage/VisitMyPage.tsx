@@ -23,7 +23,6 @@ import TViewer from "../../components/tuiEditor/TViewer";
 import { TuiEditor } from "../../components/tuiEditor/TuiEditor";
 import { Member } from "../../../types/user";
 import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
-import { PropaneSharp } from "@mui/icons-material";
 
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -333,18 +332,20 @@ export function VisitMyPage(props: any) {
               </Box>
 
               <Box className={"my_page_menu"}>
+                {/*@ts-ignore*/}
                 <TabList
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={value}
                   onChange={handleChange}
-                  aria-label="lab API tabs example"
+                  aria-label="Vertical tabs example"
+                  sx={{ borderRight: 1, borderColor: "divider", width: "95%" }}
                 >
                   <Tab
                     style={{ flexDirection: "column" }}
                     value={"1"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value}`}
-                        onClick={() => setValue("1")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("1")}>
                         <img src="/icons/pencil.svg" alt="" />
                         <span>Maqolalarim</span>
                       </div>
@@ -354,10 +355,7 @@ export function VisitMyPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"2"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value}`}
-                        onClick={() => setValue("2")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("2")}>
                         <img src="/icons/group.svg" alt="" />
                         <span>Followers</span>
                       </div>
@@ -367,10 +365,7 @@ export function VisitMyPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"3"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value}`}
-                        onClick={() => setValue("3")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("3")}>
                         <img src="/icons/user.svg" alt="" />
                         <span>Following</span>
                       </div>
