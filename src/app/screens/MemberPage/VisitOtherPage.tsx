@@ -89,7 +89,7 @@ export function VisitOtherPage(props: any) {
     useState<SearchMemberArticlesObj>({
       mb_id: chosen_mb_id,
       page: 1,
-      limit: 5,
+      limit: 4,
     });
   //first useEffect for chosen_art_id
   useEffect(() => {
