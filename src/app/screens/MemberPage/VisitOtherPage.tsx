@@ -40,6 +40,7 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import FollowApiService from "../../apiServices/followApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
@@ -71,7 +72,7 @@ const chosenSingleBoArticleRetriever = createSelector(
 export function VisitOtherPage(props: any) {
   // INITIALIZATION
   const history = useHistory();
-  const { verifiedMemberData, chosen_mb_id, chosen_art_id } = props;
+  const { chosen_mb_id, chosen_art_id } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -123,7 +124,7 @@ export function VisitOtherPage(props: any) {
       .getChosenMember(memberArticleSearchObj.mb_id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [verifiedMemberData, chosen_mb_id, followRebuild]);
+  }, [chosen_mb_id, followRebuild]);
 
   /**HANDLERS */
   const handleChange = (event: any, newValue: string) => {
@@ -152,7 +153,7 @@ export function VisitOtherPage(props: any) {
 
   const subscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.subscribe(e.target.value);
@@ -167,7 +168,7 @@ export function VisitOtherPage(props: any) {
 
   const unsubscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.unsubscribe(e.target.value);
@@ -388,7 +389,7 @@ export function VisitOtherPage(props: any) {
                         onClick={() => setValue("1")}
                       >
                         <img src="/icons/pencil.svg" alt="" />
-                        <span>Maqolalarim</span>
+                        <span>Maqolalari</span>
                       </div>
                     )}
                   />
@@ -397,10 +398,7 @@ export function VisitOtherPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"1"}
                     component={(e: any) => (
-                      <div
-                        className={`menu_box`}
-                        onClick={() => setValue("2")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("2")}>
                         <img src="/icons/group.svg" alt="" />
                         <span>Followers</span>
                       </div>
@@ -411,10 +409,7 @@ export function VisitOtherPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"1"}
                     component={() => (
-                      <div
-                        className={`menu_box`}
-                        onClick={() => setValue("3")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("3")}>
                         <img src="/icons/user.svg" alt="" />
                         <span>Following</span>
                       </div>

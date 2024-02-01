@@ -36,6 +36,7 @@ import RestaurantApiService from "../../apiServices/restaurantApiService";
 import { serverApi } from "../../../lib/config";
 import MemberApiService from "../../apiServices/memberApiService";
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 
 // REDUX SLICE
@@ -97,7 +98,7 @@ export function ChosenDish(props: any) {
   // HANDLERS
   const targetLikeProduct = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService(),
         like_result = await memberService.memberLikeTarget({

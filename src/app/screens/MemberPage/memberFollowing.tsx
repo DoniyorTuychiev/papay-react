@@ -26,6 +26,7 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { verifiedMemberData } from "../../apiServices/verify";
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
   setMemberFollowings: (data: Following[]) =>
@@ -61,7 +62,7 @@ export function MemberFollowing(props: any) {
   const unsubscriberHandler = async (e: any, id: string) => {
     try {
       e.stopPropagation();
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.unsubscribe(id);

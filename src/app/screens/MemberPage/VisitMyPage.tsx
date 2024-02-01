@@ -45,6 +45,7 @@ import {
 } from "../../../lib/sweetAlert";
 import CommunityApiService from "../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
@@ -76,7 +77,6 @@ const chosenSingleBoArticleRetriever = createSelector(
 );
 export function VisitMyPage(props: any) {
   //INITIALIZIATION
-  const { verifiedMemberData } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -98,7 +98,7 @@ export function VisitMyPage(props: any) {
     });
 
   useEffect(() => {
-    if (!localStorage.getItem("member_data")) {
+    if (!verifiedMemberData) {
       sweetFailureProvider("Pleas login first", true, true);
     }
     const communityService = new CommunityApiService();
@@ -116,8 +116,7 @@ export function VisitMyPage(props: any) {
   }, [
     memberArticleSearchObj,
     articlesRebuild,
-    followRebuild,
-    verifiedMemberData,
+    followRebuild
   ]);
 
   // HANDLERS
@@ -198,7 +197,7 @@ export function VisitMyPage(props: any) {
                       actions_enabled={true}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifiedMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
@@ -210,7 +209,7 @@ export function VisitMyPage(props: any) {
                       actions_enabled={true}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifiedMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
@@ -257,7 +256,7 @@ export function VisitMyPage(props: any) {
                     <div className="order_user_icon_box">
                       <img
                         src={
-                          verifiedMemberData?.mb_type === "RESTAURANT"
+                          chosenMember?.mb_type === "RESTAURANT"
                             ? "/icons/default_restaurant.png"
                             : "/icons/user_icon.svg"
                         }
