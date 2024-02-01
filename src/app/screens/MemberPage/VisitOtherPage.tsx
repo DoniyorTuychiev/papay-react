@@ -396,7 +396,7 @@ export function VisitOtherPage(props: any) {
 
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
+                    value={"2"}
                     component={(e: any) => (
                       <div className={`menu_box`} onClick={() => setValue("2")}>
                         <img src="/icons/group.svg" alt="" />
@@ -407,7 +407,7 @@ export function VisitOtherPage(props: any) {
 
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
+                    value={"3"}
                     component={() => (
                       <div className={`menu_box`} onClick={() => setValue("3")}>
                         <img src="/icons/user.svg" alt="" />
