@@ -116,7 +116,7 @@ export function VisitMyPage(props: any) {
   }, [
     memberArticleSearchObj,
     articlesRebuild,
-    followRebuild
+    followRebuild,
   ]);
 
   // HANDLERS
