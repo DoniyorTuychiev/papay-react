@@ -11,7 +11,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/pagination";
-import { FreeMode, Navigation, Pagination, Thumbs } from "swiper";
+import { FreeMode, Navigation, Pagination, Thumbs } from "swiper/modules";
 import Checkbox from "@mui/material/Checkbox";
 import { useParams } from "react-router-dom";
 import { Restaurant } from '../../../types/user';

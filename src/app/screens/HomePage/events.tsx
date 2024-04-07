@@ -1,10 +1,14 @@
 import React from "react";
 import { Box, Container, Stack } from "@mui/material";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-// import "swiper/swiper-bundle.css";
 
+import "swiper/css";
+import "swiper/css/autoplat";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// import { Pagination } from "swiper/modules";
+//@ts-ignore
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function Events() {
@@ -54,6 +58,7 @@ export function Events() {
               src={"/icons/arrow_right.svg"}
               className={"swiper-button-prev"}
               style={{ transform: "rotate(-180deg" }}
+              alt=""
             />
             <div className={"dot_frame_pagination swiper-pagination"}></div>
             <img
